@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quarusis.data.dao.HomepageDao">
+
+    <!-- 为了返回list 类型而定义的returnMap -->
+    <resultMap type="com.quarusis.data.entity.Page" id="PageResult">
+        <id column="page_id" jdbcType="INTEGER" property="id"/>
+        <result column="uin" jdbcType="VARCHAR" property="uin"/>
+        <result column="page_topic" jdbcType="VARCHAR" property="topic"/>
+        <result column="page_title" jdbcType="VARCHAR" property="title"/>
+        <result column="page_text" jdbcType="VARCHAR" property="text"/>
+        <result column="resource_url" jdbcType="VARCHAR" property="url"/>
+        <result column="whether_comment" jdbcType="INTEGER" property="whetherComment"/>
+        <result column="comment_sum" jdbcType="INTEGER" property="commentSum"/>
+        <result column="whether_read" jdbcType="INTEGER" property="whetherRead"/>
+    </resultMap>
+
+    <!-- 常用句式 -->
+    <sql id="page">page_id,uin,page_topic,page_title,page_text,resource_url,whether_comment,comment_sum,whether_read</sql>
+
+    <!-- 新添用戶page -->
+    <select id="pageUpload" >
+        insert user_page(uin,page_topic,page_title,page_text,resource_url,whether_comment) value(#{uin},#{topic},#{title},#{text},#{url},#{whetherComment})
+    </select>
+
+    <!-- 通过uin查询其最新page -->
+    <select id="queryPageByUin" parameterType="Integer" resultMap="PageResult">
+        select <include refid="page"/> from user_page having uin=#{uin} order by page_id desc limit 1;
+    </select>
+
+    <!-- 在添加用户page的时候 添加page评论表 -->
+    <update id="createPageComment"  parameterType="Integer" >
+        CREATE TABLE #{pid}page_comment (
+          comment_id INT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'page的commentID - 自增',
+          uin VARCHAR(10) NOT NULL COMMENT '微信UIN',
+          comment_text VARCHAR(30) NOT NULL COMMENT 'comment内容',
+          comment_heat INT(4) DEFAULT 0 COMMENT 'comment热度'
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT 'page评论表';
+    </update>
+
+    <!-- 遍历用户page -->
+    <select id="listPage" parameterType="String" resultMap="PageResult" >
+        select <include refid="page"/> from user_page having uin = #{uin} order by page_id desc
+    </select>
+
+</mapper>

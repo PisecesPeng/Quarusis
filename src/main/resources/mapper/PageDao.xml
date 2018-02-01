@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quarusis.data.dao.PageDao">
+
+    <!-- 为了返回list 类型而定义的returnMap -->
+    <resultMap type="com.quarusis.data.entity.Page" id="PageResult">
+        <id column="page_id" jdbcType="INTEGER" property="id"/>
+        <result column="uin" jdbcType="VARCHAR" property="uin"/>
+        <result column="page_topic" jdbcType="VARCHAR" property="topic"/>
+        <result column="page_title" jdbcType="VARCHAR" property="title"/>
+        <result column="page_text" jdbcType="VARCHAR" property="text"/>
+        <result column="resource_url" jdbcType="VARCHAR" property="url"/>
+        <result column="whether_comment" jdbcType="INTEGER" property="whetherComment"/>
+        <result column="comment_sum" jdbcType="INTEGER" property="commentSum"/>
+        <result column="whether_read" jdbcType="INTEGER" property="whetherRead"/>
+    </resultMap>
+    <resultMap type="com.quarusis.data.entity.Comment" id="CommentResult">
+        <id column="comment_id" jdbcType="INTEGER" property="id"/>
+        <result column="uin" jdbcType="VARCHAR" property="uin"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="comment_text" jdbcType="VARCHAR" property="text"/>
+        <result column="comment_heat" jdbcType="INTEGER" property="heat"/>
+    </resultMap>
+    <resultMap type="com.quarusis.data.entity.Heat" id="HeatResult">
+        <result column="uin" jdbcType="VARCHAR" property="uin"/>
+        <result column="page_id" jdbcType="INTEGER" property="pid"/>
+        <result column="comment_id" jdbcType="INTEGER" property="cid"/>
+    </resultMap>
+
+    <!-- 常用句式 -->
+    <sql id="page">page_id,uin,page_topic,page_title,page_text,resource_url,whether_comment,comment_sum,whether_read</sql>
+    <sql id="comment">comment_id,uin,comment_text,comment_heat</sql>
+    <sql id="heat">uin,page_id,comment_id</sql>
+
+    <!-- 通过pid取得用户page -->
+    <select id="showPage" parameterType="Integer" resultMap="PageResult" >
+        select <include refid="page"/> from user_page where page_id = #{id}
+    </select>
+
+    <!-- 新添用戶评论 -->
+    <select id="commentUpload" >
+        insert #{pid}page_comment(uin,comment_text) value(#{comment.uin},#{comment.text})
+    </select>
+    <!-- 用戶评论时 page comment_sum +1 -->
+    <update id="plusPageCommentSum" >
+        update user_page set comment_sum=comment_sum+1 where page_id=#{pid}
+    </update>
+
+    <!-- 遍历page所有评论 -->
+    <select id="listComment" parameterType="Integer" resultMap="CommentResult" >
+        select #{pid}page_comment.comment_id,#{pid}page_comment.comment_text,#{pid}page_comment.comment_heat,user_info.name from #{pid}page_comment,user_info where #{pid}page_comment.uin=user_info.uin order by #{pid}page_comment.comment_id desc;
+    </select>
+
+    <!-- 添加用户评论历史 -->
+    <select id="insertCommentHistory" >
+        insert #{uin}_history value(#{pid})
+    </select>
+    <!-- 添加用户评论历史 -->
+    <select id="deleteCommentHistory" >
+        delete from #{uin}_history where page_id=#{pid}
+    </select>
+    <!-- 查询用户评论历史 -->
+    <select id="queryCommentHistoryByPid" resultMap="PageResult" >
+        select page_id from #{uin}_history where page_id=#{pid}
+    </select>
+    <!-- 遍历用户评论历史 -->
+
+
+    <!-- page所有新评论已阅读 -->
+    <update id="readComment" >
+        update user_page set whether_read=0 where page_id=#{pid}
+    </update>
+    <!-- page有未阅读的新评论 -->
+    <update id="newComment" >
+        update user_page set whether_read=1 where page_id=#{pid}
+    </update>
+
+    <!-- 查询heat表 -->
+    <select id="queryHeat" resultMap="HeatResult" >
+        select <include refid="heat"/> from heat where uin=#{uin} and page_id=#{pid} and comment_id=#{cid}
+    </select>
+    <!-- 用戶comment heat +1 -->
+    <update id="plusCommentHeat" >
+        update #{pid}page_comment set comment_heat=comment_heat+1 where comment_id=#{cid}
+    </update>
+    <!-- 添加用户进Heat表 -->
+    <select id="insertHeat" >
+        insert heat value(#{uin},#{pid},#{cid});
+    </select>
+
+</mapper>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.quarusis.data.dao.LoginDao">
+
+    <!-- 为了返回list 类型而定义的returnMap -->
+    <resultMap type="com.quarusis.data.entity.User" id="UserResult">
+        <id column="uin" jdbcType="VARCHAR" property="uin"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <!-- 常用句式 -->
+    <sql id="user">uin,name</sql>
+
+    <!-- 添加用户操作 -->
+    <select id="insertUserInfo" parameterType="com.quarusis.data.entity.User">
+        insert user_info(uin,name) value(#{uin},#{name})
+    </select>
+    <!-- 在添加用户的时候 添加用户历史评论表 -->
+    <update id="createUserHistory"  parameterType="Integer" >
+        create table #{uin}_history(page_id INT(4) NOT NULL COMMENT 'pageID') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '用户评论历史表'
+    </update>
+
+    <!-- 查询用户信息 -->
+    <select id="queryUserInfoByUin" parameterType="String" resultMap="UserResult">
+        select <include refid="user"/> from user_info where uin = #{uin}
+    </select>
+    <select id="queryUserInfoByName" parameterType="String" resultMap="UserResult">
+        select <include refid="user"/> from user_info where name = #{name}
+    </select>
+
+</mapper>
