@@ -26,6 +26,13 @@
         body {
             position: relative;
         }
+        a{
+            color:#3f3f3f;
+        }
+        a:hover{
+            color:#3f3f3f;
+            text-decoration: none;
+        }
     </style>
 
     <script type="text/javascript">
@@ -80,7 +87,7 @@
             setInterval(
                 function() {
                     $("#pageList").load("/Quarusis/pagelist #pageList");
-                }, 5000);
+                }, 10000);
         }
     </script>
 
@@ -97,19 +104,25 @@
         <div class="col-lg-9">
             <div id="pageList">
             <c:forEach items="${pageList}" var="page">
-                <div class="well">
+                <div class="panel panel-default"><div class="panel-body">
                     <h3><font color= #0f0f0f>
                         <c:if test="${page.whetherRead == 1 }" ><span class="glyphicon glyphicon-asterisk" /></c:if> <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
                         <%-- 关闭按钮 <a style="float:right;" id="removePage" href="<%=basePath %>removeAction.do?hid=${action.hid}"><span class="glyphicon glyphicon-remove-circle"></span></a>--%>
                     </font></h3>
-                </div>
+                </div></div>
             </c:forEach>
             </div>
         </div>
         <div class="col-lg-3">
-            <div class="well">
-                预留历史评论page
-            </div>
+            <div class="panel panel-default"><div class="panel-body">
+                <h3><b>UserReviewsHistory</b></h3>
+                <hr align="left" width="25%">
+                <c:forEach items="${historyList}" var="page">
+                        <h5><font color= #0f0f0f>
+                            <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
+                        </font></h5>
+                </c:forEach>
+            </div></div>
         </div>
     </div>
 
@@ -160,7 +173,7 @@
                         <p class="text-center">
                             <a class="btn" onclick="$('#pagePicture').click();">Browse</a>
                         </p>
-                        <p id="checkpagePicture" align="center"><br></p>
+                        <p id="checkPagePicture" align="center"><br></p>
                         <p id="showPreview" align="center">
                             <img id="preview" style="width: 400px; height: 200px" />
                         </p>

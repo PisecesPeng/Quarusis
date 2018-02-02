@@ -26,6 +26,13 @@
         body {
             position: relative;
         }
+        a{
+            color:#3f3f3f;
+        }
+        a:hover{
+            color:#3f3f3f;
+            text-decoration: none;
+        }
     </style>
 
 </head>
@@ -40,14 +47,29 @@
 </div>
 
 <br>
-<c:forEach items="${allPageList}" var="page">
-    <div class="well">
-        <h3><font color= #0f0f0f>
-                <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
-                <%-- 关闭按钮 <a style="float:right;" id="removePage" href="<%=basePath %>removeAction.do?hid=${action.hid}"><span class="glyphicon glyphicon-remove-circle"></span></a>--%>
-        </font></h3>
+<div class="row" >
+    <div class="col-lg-9">
+        <c:forEach items="${allPageList}" var="page">
+            <div class="panel panel-default"><div class="panel-body">
+                <h3><font color= #0f0f0f>
+                        <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
+                </font></h3>
+                </div></div>
+        </c:forEach>
     </div>
-</c:forEach>
+    <div class="col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3><b>HotReviewsPage</b></h3>
+                <hr align="left" width="25%">
+                <c:forEach items="${HeatCommentPageList}" var="page">
+                    <h5><font color= #0f0f0f>
+                        <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
+                    </font></h5>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
 
 </div>
 <!-- jQuery -->

@@ -34,7 +34,7 @@
         setInterval(
             function() {
                 websocket.send(1);
-            }, 5000);
+            }, 10000);
     }
     //websocket发送
     websocket.onmessage = function (event) {
@@ -57,12 +57,11 @@
 <div id="test" onclick="this.innerHTML=this.innerHTML*1+1">1</div>
     <div id="pageList">
         <c:forEach items="${newpageList}" var="page">
-            <div class="well">
+            <div class="panel panel-default"><div class="panel-body">
                 <h3><font color= #0f0f0f>
                     <c:if test="${page.whetherRead == 1 }" ><span class="glyphicon glyphicon-asterisk" style="color: rgb(255, 47, 0);" /></c:if> <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
-                        <%-- 关闭按钮 <a style="float:right;" id="removePage" href="<%=basePath %>removeAction.do?hid=${action.hid}"><span class="glyphicon glyphicon-remove-circle"></span></a>--%>
                 </font></h3>
-            </div>
+            </div></div>
         </c:forEach>
     </div>
 

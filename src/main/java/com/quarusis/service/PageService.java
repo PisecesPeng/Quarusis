@@ -24,6 +24,13 @@ public interface PageService {
     List<Comment> listComment(Integer pid) throws Exception;
 
     /**
+     * 遍历用户热门评论top3
+     * @param
+     * @return
+     */
+    List<Comment> listHeatComment(Integer pid) throws Exception;
+
+    /**
      * 用户已读新评论
      */
     void readComment(Integer pid) throws Exception;

@@ -26,4 +26,9 @@
         select <include refid="page"/> from user_page order by page_id desc
     </select>
 
+    <!-- 遍历十大热门评论page -->
+    <select id="listPageCommentSum" resultMap="PageResult" >
+        select <include refid="page"/> from user_page order by comment_sum desc limit 10
+    </select>
+
 </mapper>

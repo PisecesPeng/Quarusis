@@ -46,4 +46,9 @@
         select <include refid="page"/> from user_page having uin = #{uin} order by page_id desc
     </select>
 
+    <!-- 遍历用户历史评论文章 -->
+    <select id="listUserHistory" parameterType="Integer" resultMap="PageResult" >
+        select user_page.page_id,user_page.page_topic,user_page.page_title from user_page,#{uin}_history where user_page.page_id = #{uin}_history.page_id
+    </select>
+
 </mapper>

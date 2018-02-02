@@ -25,5 +25,13 @@ public class IndexpageServiceImpl implements IndexpageService{
         return indexpageDao.listAllPage();
     }
 
+    /**
+     * 遍历十大热门评论page
+     * @param
+     * @throws
+     */
+    public List<Page> listPageCommentSum() throws Exception {
+        return indexpageDao.listPageCommentSum();
+    }
 
 }

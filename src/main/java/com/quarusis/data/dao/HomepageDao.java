@@ -34,4 +34,11 @@ public interface HomepageDao {
      */
     List<Page> listPage(String uin);
 
+    /**
+     * 遍历用户历史评论文章
+     * @param
+     * @throws
+     */
+    List<Page> listUserHistory(Integer uin);
+
 }

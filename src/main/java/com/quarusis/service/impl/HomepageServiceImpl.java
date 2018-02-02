@@ -39,4 +39,13 @@ public class HomepageServiceImpl implements HomepageService {
         return homepageDao.listPage(uin);
     }
 
+    /**
+     * 遍历用户历史评论文章
+     * @param
+     * @throws
+     */
+    public List<Page> listUserHistory(Integer uin) throws Exception {
+        return homepageDao.listUserHistory(uin);
+    }
+
 }

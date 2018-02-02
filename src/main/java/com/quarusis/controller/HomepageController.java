@@ -34,6 +34,7 @@ public class HomepageController {
         //通过account查询用户动态列表
         try {
             req.setAttribute("pageList", homepageService.listPage((String) req.getSession().getAttribute("uin")));
+            req.setAttribute("historyList", homepageService.listUserHistory(Integer.valueOf((String) req.getSession().getAttribute("uin"))));
         } catch (Exception e) {
             e.printStackTrace();
         }

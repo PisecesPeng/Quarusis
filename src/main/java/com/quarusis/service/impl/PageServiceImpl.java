@@ -47,6 +47,13 @@ public class PageServiceImpl implements PageService{
     }
 
     /**
+     * 遍历用户热门评论top3
+     */
+    public List<Comment> listHeatComment(Integer pid) throws Exception {
+        return pageDao.listHeatComment(pid);
+    }
+
+    /**
      * 用户已读新评论
      */
     public void readComment(Integer pid) throws Exception {

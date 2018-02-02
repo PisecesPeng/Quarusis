@@ -26,6 +26,13 @@
         body {
             position: relative;
         }
+        a{
+            color:#3f3f3f;
+        }
+        a:hover{
+            color:#3f3f3f;
+            text-decoration: none;
+        }
     </style>
     <script type="text/javascript">
         window.onload = function() {
@@ -80,19 +87,17 @@
             <b>#${page.topic}#</b> ${page.title}
         </font></h2><br><br>
         <div class="row">
-            <div class="col-lg-2"></div>
-            <div class="col-lg-5">
+            <div class="col-lg-7">
                 <p style="width: 600px;height: 100%;" class="thumbnail">
                     <!-- 这里是调用另一个tomcat的虚拟路径，访问图片库 -->
                     <img src="http://localhost:8081/upload/${page.url}" class="img-rounded">
                 </p>
             </div>
-            <div class="col-lg-3">
+            <div class="col-lg-5">
                 <br><h3>
                 ${page.text}
                 </h3><br>
             </div>
-            <div class="col-lg-2"></div>
         </div>
     </div>
 
@@ -107,12 +112,26 @@
             </div><br><br>
             <form id="commentForm" action="<%= basePath %>page/${page.id}/uploadComment.do" method="post" onsubmit="return checkCommentForm()">
                 <div align="center" class="form-group">
-                    <textarea id="comment" class="form-control" rows="3"	id="pageWord" placeholder="暂不支持回车与不常用字符"
+                    <textarea id="comment" class="form-control" rows="3" id="pageWord" placeholder="暂不支持回车与不常用字符"
                               name="comment" type="text" value="${comment}"></textarea>
                     <p id="checkComment" align="center"><br></p>
                     <input type="submit" value="Comment" class="btn btn-info input-control">
                 </div>
             </form>
+            <hr align="left" width="15%">
+            <c:forEach items="${heatCommentList}" var="comment">
+                <div class="panel panel-default"><div class="panel-body">
+                    <font>
+                        <b>${comment.name} : </b><br>
+                        <div style="display: inline">
+                            <font color="black" size="3">${comment.text}</font>
+                            <div style="float:right;" onclick="plusCommentHeat(${comment.id})">
+                                <p class="glyphicon glyphicon-fire" style="color: rgb(255, 32, 0);" onclick="this.innerHTML=this.innerHTML*1+1">${comment.heat}</p>
+                            </div>
+                        </div>
+                    </font>
+                </div></div>
+            </c:forEach>
             <hr align="left" width="15%">
             <c:forEach items="${commentList}" var="comment">
                 <div class="panel panel-default"><div class="panel-body">

@@ -13,4 +13,11 @@ public interface IndexpageService {
      */
     List<Page> listAllPage() throws Exception;
 
+    /**
+     * 遍历十大热门评论page
+     * @param
+     * @throws
+     */
+    List<Page> listPageCommentSum() throws Exception;
+
 }

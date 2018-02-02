@@ -23,6 +23,7 @@ public class IndexpageController {
     public String jumpIndexpage(HttpServletRequest req) {
         try {
             req.setAttribute("allPageList", indexpageService.listAllPage());
+            req.setAttribute("HeatCommentPageList", indexpageService.listPageCommentSum());
         } catch (Exception e) {
             e.printStackTrace();
         }

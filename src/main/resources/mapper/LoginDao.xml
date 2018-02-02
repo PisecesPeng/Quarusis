@@ -19,8 +19,8 @@
         insert user_info(uin,name) value(#{uin},#{name})
     </select>
     <!-- 在添加用户的时候 添加用户历史评论表 -->
-    <update id="createUserHistory"  parameterType="Integer" >
-        create table #{uin}_history(page_id INT(4) NOT NULL COMMENT 'pageID') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '用户评论历史表'
+    <update id="createUserHistory" parameterType="Integer" >
+        create table #{uin}_history(history_id INT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'HistoryID - 自增',page_id INT(4) NOT NULL COMMENT 'pageID') ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '用户评论历史表'
     </update>
 
     <!-- 查询用户信息 -->

@@ -13,4 +13,11 @@ public interface IndexpageDao {
      */
     List<Page> listAllPage();
 
+    /**
+     * 遍历十大热门评论page
+     * @param
+     * @throws
+     */
+    List<Page> listPageCommentSum();
+
 }

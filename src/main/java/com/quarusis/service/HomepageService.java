@@ -20,4 +20,11 @@ public interface HomepageService {
      */
     List<Page> listPage(String uin) throws Exception;
 
+    /**
+     * 遍历用户历史评论文章
+     * @param
+     * @throws
+     */
+    List<Page> listUserHistory(Integer uin) throws Exception;
+
 }

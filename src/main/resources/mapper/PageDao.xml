@@ -53,10 +53,14 @@
     <select id="listComment" parameterType="Integer" resultMap="CommentResult" >
         select #{pid}page_comment.comment_id,#{pid}page_comment.comment_text,#{pid}page_comment.comment_heat,user_info.name from #{pid}page_comment,user_info where #{pid}page_comment.uin=user_info.uin order by #{pid}page_comment.comment_id desc;
     </select>
+    <!-- 遍历用户热门评论top3 -->
+    <select id="listHeatComment" parameterType="Integer" resultMap="CommentResult" >
+        select #{pid}page_comment.comment_id,#{pid}page_comment.comment_text,#{pid}page_comment.comment_heat,user_info.name from #{pid}page_comment,user_info where #{pid}page_comment.uin=user_info.uin order by #{pid}page_comment.comment_heat desc limit 3;
+    </select>
 
     <!-- 添加用户评论历史 -->
     <select id="insertCommentHistory" >
-        insert #{uin}_history value(#{pid})
+        insert #{uin}_history(page_id) value(#{pid})
     </select>
     <!-- 添加用户评论历史 -->
     <select id="deleteCommentHistory" >
@@ -66,8 +70,6 @@
     <select id="queryCommentHistoryByPid" resultMap="PageResult" >
         select page_id from #{uin}_history where page_id=#{pid}
     </select>
-    <!-- 遍历用户评论历史 -->
-
 
     <!-- page所有新评论已阅读 -->
     <update id="readComment" >

@@ -41,15 +41,19 @@ public interface PageDao {
      * 添加用户评论历史
      * 删除用户评论历史
      * 查询用户评论历史
-     * 遍历用户评论历史
      * @param
      * @return
      */
     void insertCommentHistory(@Param("uin")Integer uin, @Param("pid")Integer pid);
     void deleteCommentHistory(@Param("uin")Integer uin, @Param("pid")Integer pid);
     Page queryCommentHistoryByPid(@Param("uin")Integer uin, @Param("pid")Integer pid);
-    //还未定义xml 倒序 遍历用户评论历史
-    //List<Page> queryCommentHistory(Integer uin);
+
+    /**
+     * 遍历用户热门评论top3
+     * @param
+     * @return
+     */
+    List<Comment> listHeatComment(Integer pid);
 
     /**
      * 增加heat热度
