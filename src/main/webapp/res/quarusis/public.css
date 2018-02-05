@@ -1,0 +1,24 @@
+::-webkit-scrollbar {
+    width: 0px;
+    height:0px;
+}
+body {
+    position: relative;
+}
+.navbar-default{
+    background-color:#ffffff;border-color:#e0e0e0;
+}
+a{
+    color:#3f3f3f;
+}
+a:hover{
+    color:#6f6f6f;
+    text-decoration: none;
+}
+#nav li a:hover{
+    color:#2aabd2;
+    border-bottom:1px solid #31b0d5;
+}
+#removePage:hover{
+    color:#b92c28;
+}
