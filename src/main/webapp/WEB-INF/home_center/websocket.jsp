@@ -34,7 +34,7 @@
         setInterval(
             function() {
                 websocket.send(1);
-            }, 10000);
+            }, 5000);
     }
     //websocket发送
     websocket.onmessage = function (event) {

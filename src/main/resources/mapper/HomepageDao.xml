@@ -51,4 +51,9 @@
         select user_page.page_id,user_page.page_topic,user_page.page_title from user_page,#{uin}_history where user_page.page_id = #{uin}_history.page_id
     </select>
 
+    <!-- 查询指定Topic的指定page -->
+    <select id="listSearchHomepage" resultMap="PageResult" >
+        select <include refid="page"/> from user_page where page_topic=#{uin} and page_title like '%' #{search} '%'
+    </select>
+
 </mapper>

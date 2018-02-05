@@ -18,11 +18,15 @@ public class IndexpageServiceImpl implements IndexpageService{
 
     /**
      * 遍历所有用户动态
+     * 遍历指定topic的page
      * @param
      * @throws
      */
     public List<Page> listAllPage() throws Exception {
         return indexpageDao.listAllPage();
+    }
+    public List<Page> listTopicPage(String topic) throws Exception {
+        return indexpageDao.listTopicPage(topic);
     }
 
     /**
@@ -32,6 +36,19 @@ public class IndexpageServiceImpl implements IndexpageService{
      */
     public List<Page> listPageCommentSum() throws Exception {
         return indexpageDao.listPageCommentSum();
+    }
+
+    /**
+     * 查询所有page中的指定page
+     * 查询指定Topic的指定page
+     * @param
+     * @throws
+     */
+    public List<Page> listSearchAllpage(String search) throws Exception {
+        return indexpageDao.listSearchAllpage(search);
+    }
+    public List<Page> listSearchTopicpage(String topic,String search) throws Exception {
+        return indexpageDao.listSearchTopicpage(topic, search);
     }
 
 }

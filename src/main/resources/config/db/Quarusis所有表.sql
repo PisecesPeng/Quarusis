@@ -7,6 +7,7 @@ CREATE TABLE `user_info` (
 
 -- 增加用户评论历史表
 CREATE TABLE `#{uin}_history` (
+  `history_id` INT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'HistoryID - 自增',
   `page_id` VARCHAR(10) NOT NULL COMMENT 'pageID'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '用户评论历史表';
 

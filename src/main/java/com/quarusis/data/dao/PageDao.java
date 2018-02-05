@@ -72,4 +72,9 @@ public interface PageDao {
      */
     void newComment(Integer pid);
     void readComment(Integer pid);
+
+    /**
+     * 删除Page操作
+     */
+    void removePage(Integer pid);
 }

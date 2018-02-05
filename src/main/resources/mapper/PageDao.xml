@@ -93,4 +93,9 @@
         insert heat value(#{uin},#{pid},#{cid});
     </select>
 
+    <!-- 用户移除动态 -->
+    <select id="removePage" >
+        delete from user_page where page_id = #{pid};
+    </select>
+
 </mapper>

@@ -48,4 +48,13 @@ public class HomepageServiceImpl implements HomepageService {
         return homepageDao.listUserHistory(uin);
     }
 
+    /**
+     * 查询homepage中的指定page
+     * @param
+     * @throws
+     */
+    public List<Page> listSearchHomepage(String uin,String search) throws Exception {
+        return homepageDao.listSearchHomepage(uin,search);
+    }
+
 }

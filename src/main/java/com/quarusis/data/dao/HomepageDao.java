@@ -1,6 +1,7 @@
 package com.quarusis.data.dao;
 
 import com.quarusis.data.entity.Page;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -40,5 +41,12 @@ public interface HomepageDao {
      * @throws
      */
     List<Page> listUserHistory(Integer uin);
+
+    /**
+     * 查询homepage中的指定page
+     * @param
+     * @throws
+     */
+    List<Page> listSearchHomepage(@Param("uin")String uin, @Param("search")String search);
 
 }

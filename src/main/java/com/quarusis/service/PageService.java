@@ -42,4 +42,9 @@ public interface PageService {
     void plusCommentHeat(Integer uin, Integer pid, Integer cid) throws Exception;
     Heat queryHeat(Integer uin, Integer pid, Integer cid) throws Exception;
 
+    /**
+     * 删除Page操作
+     */
+    void removePage(Integer pid) throws Exception;
+
 }

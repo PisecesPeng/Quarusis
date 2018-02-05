@@ -72,4 +72,11 @@ public class PageServiceImpl implements PageService{
         return pageDao.queryHeat(uin, pid, cid);
     }
 
+    /**
+     * 删除Page操作
+     */
+    public void removePage(Integer pid) throws Exception {
+        pageDao.removePage(pid);
+    }
+
 }

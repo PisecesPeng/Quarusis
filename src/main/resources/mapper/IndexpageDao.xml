@@ -25,10 +25,22 @@
     <select id="listAllPage" resultMap="PageResult" >
         select <include refid="page"/> from user_page order by page_id desc
     </select>
+    <!-- 遍历指定topic的page -->
+    <select id="listTopicPage" parameterType="String"  resultMap="PageResult" >
+        select <include refid="page"/> from user_page where page_topic = #{topic} order by page_id desc
+    </select>
 
     <!-- 遍历十大热门评论page -->
     <select id="listPageCommentSum" resultMap="PageResult" >
         select <include refid="page"/> from user_page order by comment_sum desc limit 10
     </select>
 
+    <!-- 查询所有page中的指定page -->
+    <select id="listSearchAllpage" resultMap="PageResult" >
+        select <include refid="page"/> from user_page where page_title like '%' #{search} '%'
+    </select>
+    <!-- 查询指定Topic的指定page -->
+    <select id="listSearchTopicpage" resultMap="PageResult" >
+        select <include refid="page"/> from user_page where page_topic=#{topic} and page_title like '%' #{search} '%'
+    </select>
 </mapper>

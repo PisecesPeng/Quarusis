@@ -56,7 +56,6 @@ public class ShowPageController {
         Integer uin = Integer.valueOf((String) req.getSession().getAttribute("uin"));
         Integer cid = Integer.valueOf((String)map.get("cid"));
         Integer pageid = Integer.valueOf(pid);
-
         try {
             if (pageService.queryHeat(uin, pageid, cid) == null) {
                 pageService.plusCommentHeat(uin, pageid, cid);
@@ -85,4 +84,22 @@ public class ShowPageController {
         }
         return "redirect:/page/{pid}";
     }
+
+    /**
+     * 用户移除Page操作
+     * @param req
+     * @return
+     */
+    @RequestMapping("/removePage.do")
+    public String removePage(HttpServletRequest req) {
+        try {
+            //从request中获得属性
+            Integer pid = Integer.valueOf(req.getParameter("pid"));
+            pageService.removePage(pid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/homepage";
+    }
+
 }

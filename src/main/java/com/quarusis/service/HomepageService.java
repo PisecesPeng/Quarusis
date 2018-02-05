@@ -27,4 +27,11 @@ public interface HomepageService {
      */
     List<Page> listUserHistory(Integer uin) throws Exception;
 
+    /**
+     * 查询homepage中的指定page
+     * @param
+     * @throws
+     */
+    List<Page> listSearchHomepage(String uin,String search) throws Exception;
+
 }

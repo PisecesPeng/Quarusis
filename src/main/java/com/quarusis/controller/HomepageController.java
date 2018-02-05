@@ -5,13 +5,17 @@ import com.quarusis.data.entity.User;
 import com.quarusis.service.HomepageService;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/")
@@ -93,4 +97,22 @@ public class HomepageController {
     public String pagelist(HttpServletRequest req) {
         return "/home_center/websocket";
     }
+
+    /**
+     * 查询指定Topic的指定page
+     * @param
+     * @return
+     */
+    @RequestMapping("/searchHomepage")
+    public @ResponseBody List<Page> searchHomePage(HttpServletRequest req,@RequestBody Map map) {
+        List<Page> list = null;
+        try {
+            //从指定topicpage中选取符合条件的Page
+            list = homepageService.listSearchHomepage((String) req.getSession().getAttribute("uin"),(String) map.get("search"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

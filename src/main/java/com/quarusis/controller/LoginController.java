@@ -65,7 +65,6 @@ public class LoginController {
         proc.destroy();
         System.out.println("python_destroy.");
 
-
         try {
             if(!("".equals(loginService.queryUserInfoByUin(uin).getName()))) {
                 name = loginService.queryUserInfoByUin(uin).getName();
@@ -115,6 +114,6 @@ public class LoginController {
         //设置session属性
         req.getSession().setAttribute("uin",uin);
         req.getSession().setAttribute("name",name);
-        return "redirect:/index_page";
+        return "redirect:/indexpage";
     }
 }

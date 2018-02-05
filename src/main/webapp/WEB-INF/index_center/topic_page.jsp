@@ -23,7 +23,7 @@
     <script
             src="res/quarusis/public.js"></script>
     <script
-            src="res/quarusis/index_center/index_page.js"></script>
+            src="res/quarusis/index_center/topic_page.js"></script>
 </head>
 <body>
 
@@ -39,8 +39,8 @@
             <ul class="nav navbar-nav">
                 <li><a href="<%= basePath %>indexpage"><span class="glyphicon glyphicon-list-alt"></span> Index </a></li>
                 <li><a
-                       data-container="body" data-toggle="popover" data-placement="bottom"
-                       data-content='
+                        data-container="body" data-toggle="popover" data-placement="bottom"
+                        data-content='
                         <a href="<%= basePath %>topicpage?topic=<%=URLEncoder.encode(URLEncoder.encode("生活")) %>"><h4># 生活 #</h4></a>
                         <a href="<%= basePath %>topicpage?topic=<%=URLEncoder.encode(URLEncoder.encode("产品")) %>"><h4># 产品 #</h4></a>
                         <a href="<%= basePath %>topicpage?topic=<%=URLEncoder.encode(URLEncoder.encode("科技")) %>"><h4># 科技 #</h4></a>
@@ -60,8 +60,8 @@
                 <input id="searchInput" type="text" class="form-control" placeholder="Search" />
             </div>
             <li><a
-                   data-container="body" data-toggle="popover" data-placement="bottom"
-                   data-content='
+                    data-container="body" data-toggle="popover" data-placement="bottom"
+                    data-content='
                         <h5><a href="<%= basePath %>homepage">
                         <span class="glyphicon glyphicon-home"></span> Homepage
                         </a></h5>

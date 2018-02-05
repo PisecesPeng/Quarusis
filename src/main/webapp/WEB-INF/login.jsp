@@ -38,7 +38,7 @@
                 url : "/Quarusis/LoginQRcode",
                 success : function(data) {
                     if(data == 1) {
-                        self.location='http://localhost:8080/Quarusis/index_page';
+                        self.location='http://localhost:8080/Quarusis/indexpage';
                     } else if(data == 0) {
                         $("#setName").html('<font color="#5B5B5B">检测到您是首次登录，请先设置您的Quarusis名称</font>');
                     } else {
