@@ -72,7 +72,7 @@
                         <span class="glyphicon glyphicon-log-out"></span> Logout
                         </a></h5>
                         '>
-                <span class="glyphicon glyphicon-user"></span> ${name}
+                <div id="username" class="glyphicon glyphicon-user">${name}</div>
                 <div class="caret"></div>
             </a></li>
         </ul>

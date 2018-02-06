@@ -57,13 +57,12 @@ function checkPageForm(r) {
 /**
  * 读取websocket.jsp中的数据
  */
-// websocket暂时关闭
-// window.onload = function() {
-//     setInterval(
-//         function() {
-//             $("#pageList").load("/Quarusis/pagelist #pageList");
-//         }, 5000);
-// }
+window.onload = function() {
+    setInterval(
+        function() {
+            $("#pageList").load("/Quarusis/pagelist #pageList");
+        }, 5000);
+}
 
 // /**
 //  * 从homepage中搜索指定page
