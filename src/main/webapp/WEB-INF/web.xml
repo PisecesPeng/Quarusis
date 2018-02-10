@@ -69,6 +69,14 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
-    <!-- 配置 监听器、过滤器 -->
+    <!-- 配置登陆过滤器 -->
+    <filter>
+        <filter-name>loginFilter</filter-name>
+        <filter-class>com.quarusis.filter.LoginFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
