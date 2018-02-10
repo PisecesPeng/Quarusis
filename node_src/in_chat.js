@@ -1,4 +1,21 @@
+var uin;
+var name;
 window.onload = function() {
+    $.ajax({
+        type : 'GET',
+        contentType : 'application/json;charset=utf-8',
+        url : "http://localhost:8080/Quarusis/getUserInfo",
+        dataType : 'jsonp',
+        jsonp: "jsonpCallback",
+        success : function(data) {
+            $("#username").text(data.name);
+            $("#useruin").text(data.uin);
+        },
+        error : function() {
+            name = "";
+            uin = "";
+        }
+    });
     var inchat = new InChat();
     inchat.init();
 };
@@ -11,7 +28,6 @@ InChat.prototype = {
      * init时开启的操作
      */
     init: function() {
-        var name;
         var that = this;
         this.socket = io.connect();
 
@@ -19,9 +35,10 @@ InChat.prototype = {
          * 连接成功事件
          */
         this.socket.on('connect', function() {
-            // 暂时锁定用户
-            name = 'pp';
-            document.title = 'Quarusis | ' + name;
+            name = $("#username").text();
+            uin = $("#useruin").text();
+            console.log("name:" + name);
+            console.log("uin:" + uin);
             document.getElementById('messageInput').focus();
             that.socket.emit('login', name);
         });
@@ -50,7 +67,7 @@ InChat.prototype = {
             messageInput.value = '';
             messageInput.focus();
             if (msg.trim().length != 0) {
-                that.socket.emit('postMsg', msg);
+                that.socket.emit('postMsg', uin, msg);
                 that._displayNewMsg(name, msg);
                 return;
             };
@@ -60,7 +77,7 @@ InChat.prototype = {
                 msg = messageInput.value;
             if (e.keyCode == 13 && msg.trim().length != 0) {
                 messageInput.value = '';
-                that.socket.emit('postMsg', msg);
+                that.socket.emit('postMsg', uin, msg);
                 that._displayNewMsg(name, msg);
             };
         }, false);
@@ -106,7 +123,7 @@ InChat.prototype = {
      */
     _displayNewMsg: function(user, msg) {
         var msg = this._displayEmoji(msg);
-        let text = user + ' : ' + msg;
+        var text = user + ' : ' + msg;
 
         this.domList = [];
         this.dom = document.querySelector('#barrage');
@@ -114,25 +131,25 @@ InChat.prototype = {
             this.dom.style.position = 'relative';
         }
         this.dom.style.overflow = 'hidden';
-        let rect = this.dom.getBoundingClientRect();
+        var rect = this.dom.getBoundingClientRect();
         this.domWidth = rect.right - rect.left;
         this.domHeight = rect.bottom - rect.top;
 
-        let div = document.createElement('div');
+        var div = document.createElement('div');
         div.style.position = 'absolute';
         div.style.left = this.domWidth + 'px';
-        div.style.top = (this.domHeight - 20) * +Math.random().toFixed(2) + 'px';
+        div.style.top = (this.domHeight - 20) * + Math.random().toFixed(2) + 'px';
         div.style.whiteSpace = 'nowrap';
         div.style.color = '#' + Math.floor(Math.random() * 256).toString(10);
         div.innerHTML = text;
         this.dom.appendChild(div);
 
-        let roll = function(timer) {
-            let now = +new Date();
+        var roll = function(timer) {
+            var now = +new Date();
             roll.last = roll.last || now;
             roll.timer = roll.timer || timer;
-            let left = div.offsetLeft;
-            let rect = div.getBoundingClientRect();
+            var left = div.offsetLeft;
+            var rect = div.getBoundingClientRect();
             if (left < (rect.left - rect.right)) {
                 this.dom.removeChild(div);
             } else {

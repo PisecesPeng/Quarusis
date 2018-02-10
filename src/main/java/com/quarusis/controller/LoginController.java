@@ -50,7 +50,7 @@ public class LoginController {
      * @param req
      * @return
      */
-    @RequestMapping("/LoginQRcode")
+    @RequestMapping("/loginQRcode")
     public @ResponseBody Integer getUserInfo(HttpServletRequest req) {
 
         try {

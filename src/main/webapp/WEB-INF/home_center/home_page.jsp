@@ -52,7 +52,7 @@
                     <div class="caret"></div>
                 </a>
                 </li>
-                <li><a href="#"><span class="glyphicon glyphicon-bullhorn"></span> InChat</a></li>
+                <li><a href="http://localhost:8081/Quarusis_InChat"><span class="glyphicon glyphicon-bullhorn"></span> InChat</a></li>
             </ul>
         </div>
         <ul class="nav navbar-nav navbar-right">
@@ -68,7 +68,7 @@
                         <h5><a href="<%= basePath %>homepage">
                         <span class="glyphicon glyphicon-cog"></span> Setting
                         </a></h5>
-                        <h5><a href="<%= basePath %>homepage">
+                        <h5><a href="<%= basePath %>logout">
                         <span class="glyphicon glyphicon-log-out"></span> Logout
                         </a></h5>
                         '>
@@ -88,8 +88,7 @@
             <c:forEach items="${pageList}" var="page">
                 <div class="panel panel-default"><div class="panel-body">
                     <h3><font color= #0f0f0f>
-                        <c:if test="${page.whetherRead == 1 }" ><span class="glyphicon glyphicon-asterisk" /></c:if> <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
-                        <%-- 关闭按钮 <a style="float:right;" id="removePage" href="<%=basePath %>removeAction.do?hid=${action.hid}"><span class="glyphicon glyphicon-remove-circle"></span></a>--%>
+                        <c:if test="${page.whetherRead == 1 }" ><span class="glyphicon glyphicon-asterisk" style="color: black;" /></c:if><a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
                     </font></h3>
                 </div></div>
             </c:forEach>

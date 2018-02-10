@@ -34,13 +34,13 @@ io.sockets.on('connection', function(socket) {
     /**
      * 消息处理事件
      */
-    socket.on('postMsg', function(msgData) {
+    socket.on('postMsg', function(useruin, msgData) {
         socket.broadcast.emit('newMsg', socket.nickname, msgData);
-        console.log("新消息",socket.nickname,msgData);
+        console.log("新消息",useruin,msgData);
 
         //插入数据
         var data = [{
-            "name":socket.nickname,
+            "uin":useruin,
             "msgData":msgData,
             "imgURL":null
         }];
@@ -48,7 +48,7 @@ io.sockets.on('connection', function(socket) {
         MongoClient.connect(DB_CONN_STR, function(err, db) {
             console.log("---------\n" + "   mongodb--连接成功");
             do_mongo.do_insert(db, data, function(result) {
-                //console.log(result);
+                console.log(result);
                 db.close();
             });
         });

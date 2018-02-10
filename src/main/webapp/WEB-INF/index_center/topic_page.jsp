@@ -52,7 +52,7 @@
                     <div class="caret"></div>
                 </a>
                 </li>
-                <li><a href="#"><span class="glyphicon glyphicon-bullhorn"></span> InChat</a></li>
+                <li><a href="http://localhost:8081/Quarusis_InChat"><span class="glyphicon glyphicon-bullhorn"></span> InChat</a></li>
             </ul>
         </div>
         <ul class="nav navbar-nav navbar-right">
@@ -68,7 +68,7 @@
                         <h5><a href="<%= basePath %>homepage">
                         <span class="glyphicon glyphicon-cog"></span> Setting
                         </a></h5>
-                        <h5><a href="<%= basePath %>homepage">
+                        <h5><a href="<%= basePath %>logout">
                         <span class="glyphicon glyphicon-log-out"></span> Logout
                         </a></h5>
                         '>

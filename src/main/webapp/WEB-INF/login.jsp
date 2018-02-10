@@ -35,7 +35,7 @@
             $.ajax({
                 type : 'GET',
                 contentType : 'application/json;charset=utf-8',
-                url : "/Quarusis/LoginQRcode",
+                url : "/Quarusis/loginQRcode",
                 success : function(data) {
                     if(data == 1) {
                         self.location='http://localhost:8080/Quarusis/indexpage';
