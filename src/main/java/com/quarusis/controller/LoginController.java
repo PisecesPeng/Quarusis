@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/")
 public class LoginController {
+
     @Resource(name="LoginService")
     private LoginService loginService;
     @Resource
@@ -34,12 +35,13 @@ public class LoginController {
      */
     @RequestMapping("/login")
     public String jumpLogin(HttpServletRequest req) {
-        //运行python脚本
         try {
+            //运行python脚本
             proc = Runtime.getRuntime().exec("python /home/piseces/Development/Quarusis/common/py_wechat.py");
         } catch (IOException e) {
             e.printStackTrace();
         }
+        //读取py运行打印的数据
         in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
         System.out.println("python_running.");
         return "login";
@@ -52,16 +54,15 @@ public class LoginController {
      */
     @RequestMapping("/loginQRcode")
     public @ResponseBody Integer getUserInfo(HttpServletRequest req) {
-
         try {
+            //取得in中的数据
             uin = in.readLine();
             in.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         System.out.println("uin:" + uin);
-
+        //python destroy
         proc.destroy();
         System.out.println("python_destroy.");
 

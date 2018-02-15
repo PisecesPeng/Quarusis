@@ -22,8 +22,6 @@ import java.util.Map;
 public class HomepageController {
 
     @Resource
-    private User user;
-    @Resource
     private Page page;
     @Resource(name="HomepageService")
     private HomepageService homepageService;
@@ -55,7 +53,6 @@ public class HomepageController {
         try {
             //设置编码
             req.setCharacterEncoding("UTF-8");
-
             //操作用户上传的图片与文本
             String uin = (String) req.getSession().getAttribute("uin");
             String pageTopic = req.getParameter("pageTopic");
@@ -67,7 +64,7 @@ public class HomepageController {
             } else {
                 whetherComment = 1;
             }
-
+            //处理图片数据
             String pictureUrl = System.currentTimeMillis()+ picture.getOriginalFilename();
             FileUtils.copyInputStreamToFile(picture.getInputStream(), new File(File.separator + "home" + File.separator + "piseces" + File.separator + "Development" + File.separator + "Quarusis" + File.separator + "upload" + File.separator, pictureUrl));
 

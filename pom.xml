@@ -35,6 +35,7 @@
       <groupId>javax</groupId>
       <artifactId>javaee-api</artifactId>
       <version>7.0</version>
+      <!-- 只在编译时和测试时运行 -->
       <scope>provided</scope>
     </dependency>
 

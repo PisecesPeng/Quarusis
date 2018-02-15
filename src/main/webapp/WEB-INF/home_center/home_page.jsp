@@ -98,9 +98,9 @@
                 <h3><b>UserReviewsHistory</b></h3>
                 <hr align="left" width="25%">
                 <c:forEach items="${historyList}" var="page">
-                        <h5><font color= #0f0f0f>
-                            <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
-                        </font></h5>
+                    <h5><font color= #0f0f0f>
+                        <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>
+                    </font></h5>
                 </c:forEach>
             </div></div>
         </div>

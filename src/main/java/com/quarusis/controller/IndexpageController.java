@@ -24,6 +24,7 @@ public class IndexpageController {
 
     @Resource(name="IndexpageService")
     private IndexpageService indexpageService;
+    //为InChat传输的数据
     private String InChatUin;
     private String InChatName;
 
@@ -34,10 +35,11 @@ public class IndexpageController {
      */
     @RequestMapping("/indexpage")
     public String jumpIndexpage(HttpServletRequest req) {
+        //为InChat传输的数据赋值
         InChatUin = (String) req.getSession().getAttribute("uin");
         InChatName = (String) req.getSession().getAttribute("name");
         try {
-                req.setAttribute("pageList", indexpageService.listAllPage());
+                req.setAttribute("pageList", indexpageService.listIndexPage());
                 req.setAttribute("heatCommentPageList", indexpageService.listPageCommentSum());
         } catch (Exception e) {
             e.printStackTrace();
@@ -55,6 +57,7 @@ public class IndexpageController {
     public String jumpTopicPage(HttpServletRequest req) {
         try {
             String str = req.getParameter("topic");
+            //判断是否存在此topic的page,若无则仅仅传输heatCommentPageList
             if ("".equals(str)||str == null) {
                 req.setAttribute("heatCommentPageList", indexpageService.listPageCommentSum());
             } else {
@@ -103,6 +106,37 @@ public class IndexpageController {
     }
 
     /**
+     * 遍历余下的indexpage
+     * @param
+     * @return
+     */
+    @RequestMapping("/appendIndexpage")
+    public @ResponseBody List<Page> appendIndexpage(@RequestBody Map map) {
+        List<Page> list = null;
+        try {
+            list = indexpageService.appendIndexpage(Integer.valueOf((String) map.get("beginpage")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+    /**
+     * 遍历余下的topicpage
+     * @param
+     * @return
+     */
+    @RequestMapping("/appendTopicpage")
+    public @ResponseBody List<Page> appendTopicpage(@RequestBody Map map) {
+        List<Page> list = null;
+        try {
+            list = indexpageService.appendTopicpage(topic,Integer.valueOf((String) map.get("beginpage")));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    /**
      * InChat,返回用户信息
      * @param
      * @return
@@ -112,13 +146,17 @@ public class IndexpageController {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=UTF-8");
         try {
+            //将信息传入map中
             Map<String,String> map = new HashMap<String,String>();
             map.put("uin", InChatUin);
             map.put("name", InChatName);
             PrintWriter out = resp.getWriter();
-            JSONObject resultJSON = JSONObject.fromObject(map); //根据需要拼装json
-            String jsonpCallback = req.getParameter("jsonpCallback");//客户端请求参数
-            out.println(jsonpCallback+"("+resultJSON.toString()+")");//返回jsonp格式数据
+            //根据需要拼装json
+            JSONObject resultJSON = JSONObject.fromObject(map);
+            //客户端请求参数
+            String jsonpCallback = req.getParameter("jsonpCallback");
+            //返回jsonp格式数据
+            out.println(jsonpCallback+"("+resultJSON.toString()+")");
             out.flush();
             out.close();
         } catch (Exception e) {

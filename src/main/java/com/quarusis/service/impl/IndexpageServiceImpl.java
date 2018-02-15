@@ -17,16 +17,29 @@ public class IndexpageServiceImpl implements IndexpageService{
     private Page page;
 
     /**
-     * 遍历所有用户动态
+     * 开始遍历indexpage
      * 遍历指定topic的page
      * @param
      * @throws
      */
-    public List<Page> listAllPage() throws Exception {
-        return indexpageDao.listAllPage();
+    public List<Page> listIndexPage() throws Exception {
+        return indexpageDao.listIndexPage();
     }
     public List<Page> listTopicPage(String topic) throws Exception {
         return indexpageDao.listTopicPage(topic);
+    }
+
+    /**
+     * 追加余下的indexpage
+     * 追加余下的topicpage
+     * @param
+     * @throws
+     */
+    public List<Page> appendIndexpage(Integer beginpage) throws Exception {
+        return indexpageDao.appendIndexpage(beginpage);
+    }
+    public List<Page> appendTopicpage(String topic,Integer beginpage) throws Exception {
+        return indexpageDao.appendTopicpage(topic,beginpage);
     }
 
     /**

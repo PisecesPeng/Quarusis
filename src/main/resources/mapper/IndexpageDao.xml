@@ -21,13 +21,22 @@
     <!-- 常用句式 -->
     <sql id="page">page_id,uin,page_topic,page_title,page_text,resource_url,whether_comment,comment_sum,whether_read</sql>
 
-    <!-- 遍历所有用户page -->
-    <select id="listAllPage" resultMap="PageResult" >
-        select <include refid="page"/> from user_page order by page_id desc
+    <!-- 遍历用户indexpage -->
+    <select id="listIndexPage" resultMap="PageResult" >
+        select <include refid="page"/> from user_page order by page_id desc limit 0,9
     </select>
+    <!-- 追加余下用户page -->
+    <select id="appendIndexpage" parameterType="Integer" resultMap="PageResult" >
+        select <include refid="page"/> from user_page order by page_id desc limit #{beginpage},9
+    </select>
+
     <!-- 遍历指定topic的page -->
     <select id="listTopicPage" parameterType="String"  resultMap="PageResult" >
-        select <include refid="page"/> from user_page where page_topic = #{topic} order by page_id desc
+        select <include refid="page"/> from user_page where page_topic = #{topic} order by page_id desc limit 0,9
+    </select>
+    <!-- 遍历余下topic的page -->
+    <select id="appendTopicpage" resultMap="PageResult" >
+        select <include refid="page"/> from user_page where page_topic = #{topic} order by page_id desc limit #{beginpage},9
     </select>
 
     <!-- 遍历十大热门评论page -->

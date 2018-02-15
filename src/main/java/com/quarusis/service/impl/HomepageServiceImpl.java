@@ -35,7 +35,7 @@ public class HomepageServiceImpl implements HomepageService {
      * @throws
      */
     public List<Page> listPage(String uin) throws Exception {
-        System.out.println("遍历用户动态");
+        //System.out.println("遍历用户动态");
         return homepageDao.listPage(uin);
     }
 

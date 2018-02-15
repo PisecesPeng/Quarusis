@@ -7,13 +7,22 @@ import java.util.List;
 public interface IndexpageService {
 
     /**
-     * 遍历所有用户动态
+     * 开始遍历indexpage
      * 遍历指定topic的page
      * @param
      * @throws
      */
-    List<Page> listAllPage() throws Exception;
+    List<Page> listIndexPage() throws Exception;
     List<Page> listTopicPage(String topic) throws Exception;
+
+    /**
+     * 追加余下的indexpage
+     * 追加余下的topicpage
+     * @param
+     * @throws
+     */
+    List<Page> appendIndexpage(Integer beginpage) throws Exception;
+    List<Page> appendTopicpage(String topic,Integer beginpage) throws Exception;
 
     /**
      * 遍历十大热门评论page

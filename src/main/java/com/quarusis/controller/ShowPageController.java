@@ -33,6 +33,7 @@ public class ShowPageController {
     public String jumpPage(HttpServletRequest req,@PathVariable("pid") String pid) {
         try {
             req.setAttribute("page", pageService.showPage(Integer.valueOf(pid)));
+            //此page是否允许评论
             if (pageService.showPage(Integer.valueOf(pid)).getWhetherComment() == 1) {
                     req.setAttribute("commentList", pageService.listComment(Integer.valueOf(pid)));
                     req.setAttribute("heatCommentList", pageService.listHeatComment(Integer.valueOf(pid)));
@@ -47,14 +48,14 @@ public class ShowPageController {
     }
 
     /**
-     * 跳转homepage页面
+     * 增加评论热度操作
      * @param
      * @return
      */
     @RequestMapping("/page/{pid}/plusCommentHeat.do")
     public @ResponseBody Integer plusCommentHeat(HttpServletRequest req, @PathVariable("pid") String pid, @RequestBody Map map) {
         Integer uin = Integer.valueOf((String) req.getSession().getAttribute("uin"));
-        Integer cid = Integer.valueOf((String)map.get("cid"));
+        Integer cid = Integer.valueOf((String) map.get("cid"));
         Integer pageid = Integer.valueOf(pid);
         try {
             if (pageService.queryHeat(uin, pageid, cid) == null) {
@@ -65,7 +66,6 @@ public class ShowPageController {
             e.printStackTrace();
         }
         return 0;
-
     }
 
     /**

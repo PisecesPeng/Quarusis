@@ -8,18 +8,22 @@ import java.util.List;
 public interface IndexpageDao {
 
     /**
-     * 遍历所有的page
+     * 开始遍历indexpage
+     * 遍历余下indexpage
      * @param
      * @return
      */
-    List<Page> listAllPage();
+    List<Page> listIndexPage();
+    List<Page> appendIndexpage(Integer beginpage);
 
     /**
      * 遍历指定topic的page
+     * 遍历余下topic的page
      * @param
      * @return
      */
     List<Page> listTopicPage(String topic);
+    List<Page> appendTopicpage(@Param("topic")String topic,@Param("beginpage")Integer beginpage);
 
     /**
      * 遍历十大热门评论page
