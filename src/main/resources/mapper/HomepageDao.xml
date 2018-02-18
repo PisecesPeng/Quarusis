@@ -33,7 +33,7 @@
 
     <!-- 在添加用户page的时候 添加page评论表 -->
     <update id="createPageComment"  parameterType="Integer" >
-        CREATE TABLE #{pid}page_comment (
+        CREATE TABLE page#{pid}_comment (
           comment_id INT(4) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'page的commentID - 自增',
           uin VARCHAR(10) NOT NULL COMMENT '微信UIN',
           comment_text VARCHAR(30) NOT NULL COMMENT 'comment内容',

@@ -30,7 +30,7 @@ public class IndexpageController {
 
     /**
      * 跳转index页面
-     * @param req
+     * @param
      * @return
      */
     @RequestMapping("/indexpage")
@@ -39,8 +39,8 @@ public class IndexpageController {
         InChatUin = (String) req.getSession().getAttribute("uin");
         InChatName = (String) req.getSession().getAttribute("name");
         try {
-                req.setAttribute("pageList", indexpageService.listIndexPage());
-                req.setAttribute("heatCommentPageList", indexpageService.listPageCommentSum());
+            req.setAttribute("pageList", indexpageService.listIndexPage());
+            req.setAttribute("heatCommentPageList", indexpageService.listPageCommentSum());
         } catch (Exception e) {
             e.printStackTrace();
         }

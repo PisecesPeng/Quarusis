@@ -161,7 +161,7 @@ InChat.prototype = {
                 requestAnimationFrame(roll);
             }
         }
-        roll(50 * +Math.random().toFixed(2));
+        roll(50 * + Math.random().toFixed(2));
     },
     
     /**
