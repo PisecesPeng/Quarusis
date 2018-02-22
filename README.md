@@ -22,16 +22,14 @@
 >glance其他人的槽点、glance神一样的评论、glance群聊弹幕中的老司机如何稳稳的带节奏；<br>
 
 蛤？写心情的人多愁善感？爱吐槽的人太过小气？吐苦水的人成不了事？<br>
-抱歉，**Quarusis**没有心灵鸡汤！没有道德绑架！没有成功哲学！这不是固步自封，相反，这是心知肚明！<br>
-
-<hr align="left" width="15%">
+抱歉，**Quarusis**没有心灵鸡汤！没有道德绑架！没有成功哲学！这不是不思进取，相反，这是心知肚明！<br>
 
 ![index](https://github.com/PisecesPeng/Quarusis/blob/master/DisplayPicture/1.png)
 
 <hr align="left" width="15%">
 
 > Quarusis的环境配置、开发测试均在Linux Mint下完成.
->>. 使用itchat，需微信扫码来实现登录(首次登录即注册);
+>>· 使用itchat，需微信扫码来实现登录(首次登录即注册);
 
 >>· 使用maven进行Java项目管理;
 
@@ -160,7 +158,7 @@
 UIN与用户名为Java后端跨域传输至node.js自动赋值
 </li>
 <li>
-弹幕聊天，可输入内容与内置表情包(高低、快慢、颜色均为随机产生)
+弹幕聊天，可输入内容与内置表情包(弹幕位置高低、弹幕速度快慢、弹幕字体颜色均为随机产生)
 </li>
 
 </ul>
