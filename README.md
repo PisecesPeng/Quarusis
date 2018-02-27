@@ -77,7 +77,7 @@
 
 </ul>
 
-<h2>2.Page主页</h2>
+<h2>2.AllPage页</h2>
 
 <ul>
 
@@ -93,7 +93,7 @@
 
 </ul>
 
-<h2>3.Page话题页</h2>
+<h2>3.TopicPage页</h2>
 
 <ul>
 
@@ -109,7 +109,7 @@
 
 </ul>
 
-<h2>4.用户主页</h2>
+<h2>4.UserCenter页</h2>
 
 <ul>
 
@@ -128,7 +128,7 @@
 
 </ul>
 
-<h2>5.展示Page页面</h2>
+<h2>5.ShowPage页</h2>
 
 <ul>
 
