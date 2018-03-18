@@ -11,11 +11,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引用本地资源 -->
     <link rel="stylesheet"
-          href="res/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+          href="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <script
-            src="res/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+            src="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
     <script
-            src="res/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+            src="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
     <style>
         ::-webkit-scrollbar {
