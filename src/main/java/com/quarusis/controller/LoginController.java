@@ -2,6 +2,7 @@ package com.quarusis.controller;
 
 import com.quarusis.data.entity.User;
 import com.quarusis.service.LoginService;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,11 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/")
 public class LoginController {
+
+    /**
+     * Logger for this class
+     */
+    private static final Logger logger = Logger.getLogger(LoginController.class);
 
     @Resource(name="LoginService")
     private LoginService loginService;
@@ -35,6 +41,7 @@ public class LoginController {
      */
     @RequestMapping("/login")
     public String jumpLogin(HttpServletRequest req) {
+        logger.info("jumpLogin(HttpServletRequest) - start");
         try {
             //运行python脚本
             proc = Runtime.getRuntime().exec("python /home/piseces/Development/Quarusis/common/py_wechat.py");
@@ -44,6 +51,7 @@ public class LoginController {
         //读取py运行打印的数据
         in = new BufferedReader(new InputStreamReader(proc.getInputStream()));
         System.out.println("python_running.");
+        logger.info("jumpLogin(HttpServletRequest) - end");
         return "login";
     }
 
@@ -54,6 +62,7 @@ public class LoginController {
      */
     @RequestMapping("/loginQRcode")
     public @ResponseBody Integer getUserInfo(HttpServletRequest req) {
+        logger.info("getUserInfo(HttpServletRequest) - start");
         try {
             //取得in中的数据
             uin = in.readLine();
@@ -77,6 +86,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        logger.info("getUserInfo(HttpServletRequest) - end");
         return 0;
     }
 
@@ -87,6 +97,7 @@ public class LoginController {
      */
     @RequestMapping("/checkName")
     public @ResponseBody Integer checkName(@RequestBody Map map) {
+        logger.info("checkName(Map) - start");
         name = (String)map.get("name");
         try {
             if (loginService.queryUserInfoByName(name)) {
@@ -95,6 +106,7 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        logger.info("checkName(Map) - end");
         return 1;
     }
 
@@ -105,6 +117,7 @@ public class LoginController {
      */
     @RequestMapping("/setName.do")
     public String setUserName(HttpServletRequest req) {
+        logger.info("setUserName(HttpServletRequest) - start");
         user.setUin(uin);
         user.setName(name);
         try {
@@ -115,6 +128,7 @@ public class LoginController {
         //设置session属性
         req.getSession().setAttribute("uin",uin);
         req.getSession().setAttribute("name",name);
+        logger.info("setUserName(HttpServletRequest) - end");
         return "redirect:/indexpage";
     }
 }

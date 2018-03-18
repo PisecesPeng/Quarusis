@@ -1,5 +1,7 @@
 package com.quarusis.filter;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -21,9 +23,15 @@ import javax.servlet.http.HttpSession;
 public class LoginFilter implements Filter {
 
     /**
+     * Logger for this class
+     */
+    private static final Logger logger = Logger.getLogger(LoginFilter.class);
+
+    /**
      * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
      */
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        logger.info("doFilter(ServletRequest,ServletResponse,FilterChain) - start");
         // 获得在下面代码中要用的request,response,session对象
         HttpServletRequest servletRequest = (HttpServletRequest) request;
         HttpServletResponse servletResponse = (HttpServletResponse) response;
@@ -66,7 +74,7 @@ public class LoginFilter implements Filter {
             // 已经登陆,继续此次请求
             chain.doFilter(request, response);
         }
-
+        logger.info("doFilter(ServletRequest,ServletResponse,FilterChain) - end");
     }
 
     /**
