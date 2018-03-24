@@ -61,6 +61,9 @@ public class WebSocket {
      * 向页面传递pagelist
      */
     public void sendPageList() throws Exception{
+        /*
+            改(禁止使用httpsession传输，使用json之类的进行操作传输数据)
+         */
         httpSession.setAttribute("newpageList", homepageService.listPage((String) httpSession.getAttribute("uin")));
         this.session.getBasicRemote().sendText("1");
         System.out.println("已发送消息");

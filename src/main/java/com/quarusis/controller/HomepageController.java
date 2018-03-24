@@ -1,7 +1,6 @@
 package com.quarusis.controller;
 
 import com.quarusis.data.entity.Page;
-import com.quarusis.data.entity.User;
 import com.quarusis.service.HomepageService;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
