@@ -53,7 +53,7 @@
     })
 
     /**
-     * 检查'注册名称'是否符合格式要求
+     * 检查'注册名称'是否符合要求
      */
     var flag = false;
     function checkName(name){

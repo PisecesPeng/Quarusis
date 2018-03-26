@@ -1,3 +1,6 @@
+/**
+ * 页面上的效果
+ */
 $(function () {
     $("[data-toggle='popover']").popover({trigger: "click", html: true, animation: false})
         .on("click", function () {

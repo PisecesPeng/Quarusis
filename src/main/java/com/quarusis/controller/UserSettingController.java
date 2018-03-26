@@ -45,7 +45,10 @@ public class UserSettingController {
     @RequestMapping("/updateName.do")
     public void updateUserName(HttpServletRequest req,@RequestBody Map map) {
         logger.info("updateUserName(HttpServletRequest,Map) - start");
-        String name = (String)map.get("name");
+        String name = (String) map.get("name");
+        String uin = (String) req.getSession().getAttribute("uin");
+        user.setUin(uin);
+        user.setName(name);
         try {
             userSettingService.UpdateUsername(user);
         } catch (Exception e) {

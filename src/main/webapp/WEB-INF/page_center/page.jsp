@@ -90,7 +90,7 @@
                         <h5><a href="<%= basePath %>homepage">
                         <span class="glyphicon glyphicon-home"></span> Homepage
                         </a></h5>
-                        <h5><a href="<%= basePath %>homepage">
+                        <h5><a href="<%= basePath %>UserSetting">
                         <span class="glyphicon glyphicon-cog"></span> Setting
                         </a></h5>
                         <h5><a href="<%= basePath %>logout">
