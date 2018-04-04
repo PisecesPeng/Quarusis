@@ -25,10 +25,12 @@ CREATE TABLE `user_page` (
   PRIMARY KEY (`page_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT '用户page表';
 
--- 增加指定page评论表
+-- 增加指定page评论表,增加回复评论功能
 CREATE TABLE `#{page_id}_comment` (
   `comment_id` INT(4) NOT NULL AUTO_INCREMENT COMMENT 'page的commentID - 自增',
+  `toComment_id` INT(4) NOT NULL DEFAULT 0 COMMENT '记录其属于哪条评论的评论 - 为0则为回复page的评论',
   `uin` VARCHAR(10) NOT NULL COMMENT '微信UIN',
+  `toUin` VARCHAR(10) COMMENT '回复评论的微信UIN - 为NULL则为回复page的评论',
   `comment_text` VARCHAR(20) NOT NULL COMMENT 'comment内容',
   `comment_heat` INT(4) DEFAULT 0 COMMENT 'comment热度',
   PRIMARY KEY (`comment_id`)
