@@ -19,8 +19,9 @@
     </resultMap>
     <resultMap type="com.quarusis.data.entity.Comment" id="CommentResult">
         <id column="comment_id" jdbcType="INTEGER" property="id"/>
+        <result column="toComment_id" jdbcType="VARCHAR" property="toId"/>
         <result column="uin" jdbcType="VARCHAR" property="uin"/>
-        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="toUin" jdbcType="VARCHAR" property="toUin"/>
         <result column="comment_text" jdbcType="VARCHAR" property="text"/>
         <result column="comment_heat" jdbcType="INTEGER" property="heat"/>
     </resultMap>

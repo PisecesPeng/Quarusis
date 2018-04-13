@@ -5,7 +5,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class Comment {
     private int id;
+    private int toId;
     private String uin;
+    private String toUin;
     private String name;
     private String text;
     private int heat;
@@ -40,5 +42,21 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public int getToId() {
+        return toId;
+    }
+
+    public void setToId(int toId) {
+        this.toId = toId;
+    }
+
+    public String getToUin() {
+        return toUin;
+    }
+
+    public void setToUin(String toUin) {
+        this.toUin = toUin;
     }
 }
