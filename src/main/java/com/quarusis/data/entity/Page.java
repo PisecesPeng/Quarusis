@@ -74,4 +74,18 @@ public class Page {
         return whetherRead;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "id=" + id +
+                ", uin='" + uin + '\'' +
+                ", topic='" + topic + '\'' +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", url='" + url + '\'' +
+                ", whetherComment=" + whetherComment +
+                ", commentSum=" + commentSum +
+                ", whetherRead=" + whetherRead +
+                '}';
+    }
 }
