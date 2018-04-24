@@ -35,6 +35,11 @@
                 processData : false,
                 dataType : 'json',
                 data : map,
+                /**
+                 * 修改
+                 *      click true +1   (写入表-添加)
+                 *      click false -1  (写入表-移除)
+                 */
                 success : function(data) {
                     if(data == 1) {
                         ;
