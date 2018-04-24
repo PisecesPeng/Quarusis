@@ -39,24 +39,15 @@
     //websocket发送
     websocket.onmessage = function (event) {
 
-        <%--var str= "";--%>
-        <%--str += '<c:forEach items="${newpageList}" var="page">';--%>
-        <%--str += '<div class="well"><h3><font color= #0f0f0f>';--%>
-        <%--str += '<c:if test="${page.whetherRead == 1 }" ><span class="glyphicon glyphicon-asterisk" style="color: rgb(255, 47, 0);" /></c:if> <a href="<%=basePath %>page/${page.id}">&nbsp;&nbsp;<b>#${page.topic}#</b> ${page.title}</a>';--%>
-        <%--str += '</font></h3></div>';--%>
-        <%--str += '</c:forEach>';--%>
-        <%--$("#pageList").html(str);--%>
-        // $("#pageList").html(event.data);
-        var data = JSON.stringify(event.data);
-        alert(data);
+        var pages = eval(event.data);
         var str= "";
-        $.each(data, function (item) {
-            <%--str += '<div class="well"><h3><font color= #0f0f0f>';--%>
-            <%--if (item.whetherRead == 1) {--%>
-                <%--str += '<span class="glyphicon glyphicon-asterisk" style="color: rgb(255, 47, 0);" />'--%>
-            <%--}--%>
-            <%--str += ' <a href="<%=basePath %>page/'+ item.id + '">&nbsp;&nbsp;<b>#' + item.topic + '#</b> '+ item.title +'</a>';--%>
-            <%--str += '</font></h3></div>';--%>
+        $.each(pages, function (index, page) {
+            str += '<div class="well"><h3><font color= #0f0f0f>';
+            if (page.whetherRead == 1) {
+                str += '<span class="glyphicon glyphicon-asterisk" style="color: rgb(255, 47, 0);" />'
+            }
+            str += ' <a href="<%=basePath %>page/' + page.id + '">&nbsp;&nbsp;<b>#' + page.topic + '#</b> ' + page.title + '</a>';
+            str += '</font></h3></div>';
         })
         $("#pageList").html(str);
         $("#test").click();
