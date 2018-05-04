@@ -31,21 +31,21 @@ $(function () {
  * 检查'上传动态'是否符合格式
  */
 function checkPageForm(r) {
-    if(!(/^[A-Za-z0-9\u4e00-\u9fa5,，.。；;‘’''？?！!：:、“”""\~\`\-_=+@#$%^&*\[\]{}()]{1,20}$/.test(r.pageTitle.value))) {
+    if (!(/^[A-Za-z0-9\u4e00-\u9fa5,，.。；;‘’''？?！!：:、“”""\~\`\-_=+@#$%^&*\[\]{}()]{1,20}$/.test(r.pageTitle.value))) {
         $("#checkPageTitle").html('请务必控制输入1~20个规范字符之间.');
         r.pageTitle.focus();
         return false;
     } else {
         $("#checkPageTitle").html('<br>');
     }
-    if(!(/^[A-Za-z0-9\u4e00-\u9fa5,，.。；;‘’''？?！!：:、“”""\~\`\-_=+@#$%^&*\[\]{}()]{1,99}$/.test(r.pageWord.value))) {
+    if (!(/^[A-Za-z0-9\u4e00-\u9fa5,，.。；;‘’''？?！!：:、“”""\~\`\-_=+@#$%^&*\[\]{}()]{1,99}$/.test(r.pageWord.value))) {
         $("#checkPageWord").html('请务必控制输入1~99个规范字符之间.');
         r.pageWord.focus();
         return false;
     } else {
         $("#checkPageWord").html('<br>');
     }
-    if(!(/\.([jJ][pP][gG]){1}$|\.([jJ][pP][eE][gG]){1}$|\.([pP][nN][gG]){1}$| $/.test(r.pagePicture.value))) {
+    if (!(/\.([jJ][pP][gG]){1}$|\.([jJ][pP][eE][gG]){1}$|\.([pP][nN][gG]){1}$| $/.test(r.pagePicture.value))) {
         $("#checkPagePicture").html('仅能上传jpg/jpeg/png格式的图片.');
         return false;
     } else {
@@ -54,15 +54,45 @@ function checkPageForm(r) {
     return true;
 }
 
-/**
- * 读取websocket.jsp中的数据
- */
-window.onload = function() {
+var websocket = null;
+// 判断当前浏览器是否支持WebSocket
+if ('WebSocket' in window) {
+    websocket = new WebSocket("ws://localhost:8080/Quarusis/pagelist");
+} else {
+    alert('当前浏览器 Not support websocket')
+}
+//websocket开始
+websocket.onopen = function () {
+    //websocket发送
     setInterval(
         function() {
-            $("#pageList").load("/Quarusis/pagelist #pageList");
+            websocket.send(1);
         }, 5000);
 }
+//websocket发送
+websocket.onmessage = function (event) {
+    var pages = eval(event.data);
+    var str= "";
+    $.each(pages, function (index, page) {
+        str += '<div class="panel panel-default"><div class="panel-body"><h3><font color= #0f0f0f>';
+        if (page.whetherRead == 1) {
+            str += '<span class="glyphicon glyphicon-asterisk" style="color: black" />'
+        }
+        str += ' <a href="http://localhost:8080/Quarusis/page/' + page.id + '">&nbsp;&nbsp;<b>#' + page.topic + '#</b> ' + page.title + '</a>';
+        str += '</font></h3></div></div>';
+    })
+    $("#pageList").html(str);
+}
+
+// /**
+//  * 读取websocket.jsp中的数据
+//  */
+// window.onload = function() {
+//     setInterval(
+//         function() {
+//             $("#pageList").load("/Quarusis/pagelist #pageList");
+//         }, 5000);
+// }
 
 // /**
 //  * 从homepage中搜索指定page

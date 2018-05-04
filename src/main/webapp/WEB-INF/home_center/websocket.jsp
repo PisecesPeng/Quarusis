@@ -42,12 +42,12 @@
         var pages = eval(event.data);
         var str= "";
         $.each(pages, function (index, page) {
-            str += '<div class="well"><h3><font color= #0f0f0f>';
+            str += '<div class="panel panel-default"><div class="panel-body"><h3><font color= #0f0f0f>';
             if (page.whetherRead == 1) {
                 str += '<span class="glyphicon glyphicon-asterisk" style="color: rgb(255, 47, 0);" />'
             }
-            str += ' <a href="<%=basePath %>page/' + page.id + '">&nbsp;&nbsp;<b>#' + page.topic + '#</b> ' + page.title + '</a>';
-            str += '</font></h3></div>';
+            str += ' <a href="http://localhost:8080/Quarusis/page/' + page.id + '">&nbsp;&nbsp;<b>#' + page.topic + '#</b> ' + page.title + '</a>';
+            str += '</font></h3></div></div>';
         })
         $("#pageList").html(str);
         $("#test").click();

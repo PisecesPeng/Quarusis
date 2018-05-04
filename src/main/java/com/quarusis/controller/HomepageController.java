@@ -94,17 +94,16 @@ public class HomepageController {
         return "redirect:/homepage";
     }
 
-    /**
-     * websocket拿pagelist
-     * @param req
-     * @return
-     */
-    @RequestMapping("/pagelist")
-    public String pagelist(HttpServletRequest req) {
-        logger.info("pagelist(HttpServletRequest) - start");
-        logger.info("pagelist(HttpServletRequest) - end");
-        return "/home_center/websocket";
-    }
+//    /**
+//     * 跳转页面
+//     * ps.该页面是为了 其他页面拿其页面中的值
+//     * @param req
+//     * @return
+//     */
+//    @RequestMapping("/pagelist")
+//    public String pagelist(HttpServletRequest req) {
+//        return "/home_center/websocket";
+//    }
 
     /**
      * 查询指定Topic的指定page
