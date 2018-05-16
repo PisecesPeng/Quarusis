@@ -93,6 +93,14 @@
     <select id="insertHeat" >
         insert heat value(#{uin},#{pid},#{cid});
     </select>
+    <!-- 用戶comment heat -1 -->
+    <update id="subCommentHeat" >
+        update #{pid}page_comment set comment_heat=comment_heat-1 where comment_id=#{cid}
+    </update>
+    <!-- 将用户移出Heat表 -->
+    <select id="removeHeat" >
+        delete from heat where uin=#{uin} and page_id=#{pid} and comment_id=#{cid}
+    </select>
 
     <!-- 用户移除动态 -->
     <select id="removePage" >

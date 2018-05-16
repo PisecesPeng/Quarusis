@@ -31,20 +31,20 @@
             $.ajax({
                 type : 'POST',
                 contentType : 'application/json;charset=utf-8',
-                url : "/Quarusis/page/${page.id}/plusCommentHeat.do",
+                url : "/Quarusis/page/${page.id}/operatCommentHeat.do",
                 processData : false,
                 dataType : 'json',
                 data : map,
-                /**
-                 * 修改
-                 *      click true +1   (写入表-添加)
-                 *      click false -1  (写入表-移除)
-                 */
                 success : function(data) {
                     if(data == 1) {
-                        ;
+                        var i = $("#commentHeat").text()
+                        $("#checkPageTitle").text(i+1)
+                    } else if (data == 0) {
+                        var i = $("#commentHeat").text()
+                        $("#checkPageTitle").text(i-1)
+                        alert("您已取消heat此评论")
                     } else {
-                        alert("您已heat过此评论，请勿重复操作")
+                        alert("抱歉，评论服务繁忙")
                     }
                 },
                 error : function() {
@@ -158,7 +158,7 @@
                         <div style="display: inline">
                             <font color="black" size="3">${comment.text}</font>
                             <div style="float:right;" onclick="plusCommentHeat(${comment.id})">
-                                <p class="glyphicon glyphicon-fire" style="color: rgb(255, 32, 0);" onclick="this.innerHTML=this.innerHTML*1+1">${comment.heat}</p>
+                                <p id="commentHeat" class="glyphicon glyphicon-fire" style="color: rgb(255, 32, 0);">${comment.heat}</p>
                             </div>
                         </div>
                     </font>
@@ -186,17 +186,6 @@
     </c:if>
 
 </div>
-
-
-<!-- jQuery -->
-<script src="res/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="res/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="res/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-<!-- Custom Theme JavaScript -->
-<script src="res/dist/js/sb-admin-2.js"></script>
-<!-- Background -->
 
 </body>
 </html>

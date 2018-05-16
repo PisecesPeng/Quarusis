@@ -58,12 +58,16 @@ public interface PageDao {
     /**
      * 增加heat热度
      * 写入heat表
+     * 减少heat热度
+     * 移出heat标
      * 查询heat表
      * @param
      * @return
      */
     void plusCommentHeat(@Param("pid")Integer pid, @Param("cid")Integer cid);
     void insertHeat(@Param("uin")Integer uin, @Param("pid")Integer pid, @Param("cid")Integer cid);
+    void subCommentHeat(@Param("pid")Integer pid, @Param("cid")Integer cid);
+    void removeHeat(@Param("uin")Integer uin, @Param("pid")Integer pid, @Param("cid")Integer cid);
     Heat queryHeat(@Param("uin")Integer uin, @Param("pid")Integer pid, @Param("cid")Integer cid);
 
     /**

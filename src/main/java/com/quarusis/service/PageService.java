@@ -37,9 +37,11 @@ public interface PageService {
 
     /**
      * 用户增加heat
+     * 用户减少heat
      * 用户查询heat
      */
     void plusCommentHeat(Integer uin, Integer pid, Integer cid) throws Exception;
+    void subCommentHeat(Integer uin, Integer pid, Integer cid) throws Exception;
     Heat queryHeat(Integer uin, Integer pid, Integer cid) throws Exception;
 
     /**

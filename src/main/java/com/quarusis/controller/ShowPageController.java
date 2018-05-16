@@ -56,26 +56,31 @@ public class ShowPageController {
     }
 
     /**
-     * 增加评论热度操作
+     * 操作评论热度操作
      * @param
      * @return
      */
-    @RequestMapping("/page/{pid}/plusCommentHeat.do")
-    public @ResponseBody Integer plusCommentHeat(HttpServletRequest req, @PathVariable("pid") String pid, @RequestBody Map map) {
-        logger.info("plusCommentHeat(HttpServletRequest,String,Map) - start");
+    @RequestMapping("/page/{pid}/operatCommentHeat.do")
+    public @ResponseBody Integer operatCommentHeat(HttpServletRequest req, @PathVariable("pid") String pid, @RequestBody Map map) {
+        logger.info("operatCommentHeat(HttpServletRequest,String,Map) - start");
         Integer uin = Integer.valueOf((String) req.getSession().getAttribute("uin"));
         Integer cid = Integer.valueOf((String) map.get("cid"));
         Integer pageid = Integer.valueOf(pid);
         try {
             if (pageService.queryHeat(uin, pageid, cid) == null) {
+                // 增加评论热度操作
                 pageService.plusCommentHeat(uin, pageid, cid);
                 return 1;
+            } else {
+                // 减少评论热度操作
+                pageService.subCommentHeat(uin, pageid, cid);
+                return 0;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.info("plusCommentHeat(HttpServletRequest,String,Map) - end");
-        return 0;
+        logger.info("operatCommentHeat(HttpServletRequest,String,Map) - end");
+        return -1;
     }
 
     /**

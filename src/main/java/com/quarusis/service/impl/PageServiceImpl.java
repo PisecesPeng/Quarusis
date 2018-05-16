@@ -78,6 +78,7 @@ public class PageServiceImpl implements PageService{
 
     /**
      * 用户增加heat
+     * 用户减少heat
      * 用户查询heat
      */
     public void plusCommentHeat(Integer uin, Integer pid, Integer cid) throws Exception {
@@ -85,6 +86,12 @@ public class PageServiceImpl implements PageService{
         pageDao.plusCommentHeat(pid, cid);
         pageDao.insertHeat(uin, pid, cid);
         logger.info("plusCommentHeat(Integer,Integer,Integer) - end");
+    }
+    public void subCommentHeat(Integer uin, Integer pid, Integer cid) throws Exception {
+        logger.info("subCommentHeat(Integer,Integer,Integer) - start");
+        pageDao.subCommentHeat(pid, cid);
+        pageDao.removeHeat(uin, pid, cid);
+        logger.info("subCommentHeat(Integer,Integer,Integer) - end");
     }
     public Heat queryHeat(Integer uin, Integer pid, Integer cid) throws Exception {
         logger.info("queryHeat(Integer,Integer,Integer) - start");
