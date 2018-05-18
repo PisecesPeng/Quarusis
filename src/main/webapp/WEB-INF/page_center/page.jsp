@@ -26,7 +26,7 @@
             src="http://localhost:8080/Quarusis/res/quarusis/page_center/page.js"></script>
 
     <script type="text/javascript">
-        function plusCommentHeat(cid){
+        function plusFireHeat(cid){
             var map = '{"cid":"' + cid + '"}';
             $.ajax({
                 type : 'POST',
@@ -37,11 +37,37 @@
                 data : map,
                 success : function(data) {
                     if(data == 1) {
-                        var i = $("#commentHeat").text()
-                        $("#checkPageTitle").text(i+1)
+                        var i = $("#fireHeat").text()
+                        $("#fireHeat").text(i+1)
                     } else if (data == 0) {
-                        var i = $("#commentHeat").text()
-                        $("#checkPageTitle").text(i-1)
+                        var i = $("#fireHeat").text()
+                        $("#fireHeat").text(i-1)
+                        alert("您已取消heat此评论")
+                    } else {
+                        alert("抱歉，评论服务繁忙")
+                    }
+                },
+                error : function() {
+                    alert("抱歉，评论服务繁忙")
+                }
+            });
+        }
+        function plusNormalHeat(cid){
+            var map = '{"cid":"' + cid + '"}';
+            $.ajax({
+                type : 'POST',
+                contentType : 'application/json;charset=utf-8',
+                url : "/Quarusis/page/${page.id}/operatCommentHeat.do",
+                processData : false,
+                dataType : 'json',
+                data : map,
+                success : function(data) {
+                    if(data == 1) {
+                        var i = $("#normalHeat").text()
+                        $("#normalHeat").text(i+1)
+                    } else if (data == 0) {
+                        var i = $("#normalHeat").text()
+                        $("#normalHeat").text(i-1)
                         alert("您已取消heat此评论")
                     } else {
                         alert("抱歉，评论服务繁忙")
@@ -151,28 +177,28 @@
                 </div>
             </form>
             <hr align="left" width="15%">
-            <c:forEach items="${heatCommentList}" var="comment">
+            <c:forEach items="${fireCommentList}" var="comment">
                 <div class="panel panel-default"><div class="panel-body">
                     <font>
                         <b>${comment.name} : </b><br>
                         <div style="display: inline">
                             <font color="black" size="3">${comment.text}</font>
-                            <div style="float:right;" onclick="plusCommentHeat(${comment.id})">
-                                <p id="commentHeat" class="glyphicon glyphicon-fire" style="color: rgb(255, 32, 0);">${comment.heat}</p>
+                            <div style="float:right;" onclick="plusFireHeat(${comment.id})">
+                                <p id="fireHeat" class="glyphicon glyphicon-fire" style="color: rgb(255, 32, 0);">${comment.heat}</p>
                             </div>
                         </div>
                     </font>
                 </div></div>
             </c:forEach>
             <hr align="left" width="15%">
-            <c:forEach items="${commentList}" var="comment">
+            <c:forEach items="${normalCommentList}" var="comment">
                 <div class="panel panel-default"><div class="panel-body">
                     <font>
                         <b>${comment.name} : </b><br>
                         <div style="display: inline">
                             <font color="black" size="3">${comment.text}</font>
-                            <div style="float:right;" onclick="plusCommentHeat(${comment.id})">
-                                <p id="heat" class="glyphicon glyphicon-fire" style="color: rgb(255, 32, 0);" onclick="this.innerHTML=this.innerHTML*1+1">${comment.heat}</p>
+                            <div style="float:right;" onclick="plusNormalHeat(${comment.id})">
+                                <p id="normalHeat" class="glyphicon glyphicon-fire" style="color: rgb(255, 32, 0);">${comment.heat}</p>
                             </div>
                         </div>
                     </font>

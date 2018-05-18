@@ -1,13 +1,12 @@
-# Quarusis
+# Quarusis - :new_moon_with_face:希望淡化社交的观点，必须依赖社交的网站:full_moon_with_face:
 
+>**Quarusis**希望尽可能'淡化社交'，而突出'用户表达的事物'以及'评论展示的观点'.
 
->**Quarusis**希望可以尽可能的淡化社交与用户，而突出用户所表达的事物以及评论所展示的观点.
+>**Quarusis**没有私信、没有好友、没有粉丝、没有大V，能够看到点个赞就是缘分(doge脸).
 
->**Quarusis**没有私信、没有好友、没有百万粉丝、没有满级大V、还想点赞？看见就是缘分(doge脸).
+>**Quarusis**能禁止评论，可以记录生活点滴，既能与众人分享，又能不让人打扰(Quarusis本身也淡化社交).
 
->**Quarusis**能够禁止评论，你可以记录生活中的点滴，既能与众人分享，又能不让人打扰(Quarusis本身也淡化社交).
-
->**Quarusis**也能够开放评论，无论什么梗，大家的神脑洞、神逻辑比'故事'还精彩(Quarusis眉头一皱，发现事情并不简单).
+>**Quarusis**也能开放评论，无论什么梗，大家的神脑洞、神逻辑比'故事'还精彩(Quarusis眉头一皱，发现事情并不简单).
 
 >**Quarusis**只有'write'或'glance'：<br>
 >write自己、write评论、write群聊；<br>
@@ -17,14 +16,14 @@
 
 <hr align="left" width="15%">
 
-> Quarusis的环境配置、开发测试均在Linux Mint下完成.
+> Quarusis的环境搭建、开发测试均在Linux Mint下完成.
 >>· 使用itchat(python微信库)，需微信扫码来实现登录(首次登录即注册);
 
 >>· 使用maven进行Java项目管理;
 
->>· 使用Spring，对项目进行配置，包括IoC与事务管理;
+>>· 使用Spring，对项目进行配置，包括IoC与事务管理等;
 
->>· 使用SpringMVC，代码量缩减，结构更加清晰;
+>>· 使用SpringMVC，代码量缩减，开发结构更加清晰;
 
 >>· 使用Mybatis，操作MySQL数据库，SQL语句统一管理;
 
@@ -40,11 +39,11 @@
 
 >>· 使用Express作为web框架，实现基础功能;
 
->>· 使用Socket.IO，核心部分，负责'即时通信'等功能;
+>>· 使用Socket.IO，弹幕聊天的核心部分，负责'即时通信'等功能;
 
 >>· 使用MongoDB，负责记录'用户聊天记录'等;
 
->>· 使用JQuery，提升用户体验与网页事件效果;
+>>· 使用JQuery，处理前端事件，提升用户体验;
 
 >>· 使用Bootstrap，美化界面布局，提升用户体验;
 
@@ -112,7 +111,7 @@
 用户添加Page操作(Page由话题、标题、内容、图片、是否允许评论等组成)
 </li>
 <li>
-使用WebSocket，实时显示文章是否有新评论(每5s更新一次)
+使用WebSocket，实时显示Page是否有新评论(每5s实时刷新一次)
 </li>
 
 </ul>
@@ -157,7 +156,7 @@ UIN与用户名是从Java后端服务器跨域传输至Node.js服务器(使用js
 <ul>
 
 <li>
-检测网页session，未登录则重定向到登录页
+检测网页session，未登录用户则重定向到登录页
 </li>
 
 </ul>

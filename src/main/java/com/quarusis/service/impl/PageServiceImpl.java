@@ -52,19 +52,19 @@ public class PageServiceImpl implements PageService{
     /**
      * 遍历page评论
      */
-    public List<Comment> listComment(Integer pid) throws Exception {
-        logger.info("listComment(Integer) - start");
-        logger.info("listComment(Integer) - end");
-        return pageDao.listComment(pid);
+    public List<Comment> listNormalComment(Integer pid) throws Exception {
+        logger.info("listNormalComment(Integer) - start");
+        logger.info("listNormalComment(Integer) - end");
+        return pageDao.listNormalComment(pid);
     }
 
     /**
      * 遍历用户热门评论top3
      */
-    public List<Comment> listHeatComment(Integer pid) throws Exception {
-        logger.info("listHeatComment(Integer) - start");
-        logger.info("listHeatComment(Integer) - end");
-        return pageDao.listHeatComment(pid);
+    public List<Comment> listFireComment(Integer pid) throws Exception {
+        logger.info("listFireComment(Integer) - start");
+        logger.info("listFireComment(Integer) - end");
+        return pageDao.listFireComment(pid);
     }
 
     /**

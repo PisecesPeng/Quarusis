@@ -21,7 +21,14 @@ public interface PageDao {
      * @param
      * @return
      */
-    List<Comment> listComment(Integer pid);
+    List<Comment> listNormalComment(Integer pid);
+
+    /**
+     * 遍历用户热门评论top3
+     * @param
+     * @return
+     */
+    List<Comment> listFireComment(Integer pid);
 
     /**
      * 添加用户评论
@@ -47,13 +54,6 @@ public interface PageDao {
     void insertCommentHistory(@Param("uin")Integer uin, @Param("pid")Integer pid);
     void deleteCommentHistory(@Param("uin")Integer uin, @Param("pid")Integer pid);
     Page queryCommentHistoryByPid(@Param("uin")Integer uin, @Param("pid")Integer pid);
-
-    /**
-     * 遍历用户热门评论top3
-     * @param
-     * @return
-     */
-    List<Comment> listHeatComment(Integer pid);
 
     /**
      * 增加heat热度

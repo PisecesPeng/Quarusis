@@ -51,11 +51,11 @@
     </update>
 
     <!-- 遍历page所有评论 -->
-    <select id="listComment" parameterType="Integer" resultMap="CommentResult" >
+    <select id="listNormalComment" parameterType="Integer" resultMap="CommentResult" >
         select #{pid}page_comment.comment_id,#{pid}page_comment.comment_text,#{pid}page_comment.comment_heat,user_info.name from #{pid}page_comment,user_info where #{pid}page_comment.uin=user_info.uin order by #{pid}page_comment.comment_id desc;
     </select>
     <!-- 遍历用户热门评论top3 -->
-    <select id="listHeatComment" parameterType="Integer" resultMap="CommentResult" >
+    <select id="listFireComment" parameterType="Integer" resultMap="CommentResult" >
         select #{pid}page_comment.comment_id,#{pid}page_comment.comment_text,#{pid}page_comment.comment_heat,user_info.name from #{pid}page_comment,user_info where #{pid}page_comment.uin=user_info.uin order by #{pid}page_comment.comment_heat desc limit 3;
     </select>
 

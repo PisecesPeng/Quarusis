@@ -42,8 +42,8 @@ public class ShowPageController {
             req.setAttribute("page", pageService.showPage(Integer.valueOf(pid)));
             //此page是否允许评论
             if (pageService.showPage(Integer.valueOf(pid)).getWhetherComment() == 1) {
-                    req.setAttribute("commentList", pageService.listComment(Integer.valueOf(pid)));
-                    req.setAttribute("heatCommentList", pageService.listHeatComment(Integer.valueOf(pid)));
+                    req.setAttribute("normalCommentList", pageService.listNormalComment(Integer.valueOf(pid)));
+                    req.setAttribute("fireCommentList", pageService.listFireComment(Integer.valueOf(pid)));
                 if (pageService.showPage(Integer.valueOf(pid)).getUin().equals(req.getSession().getAttribute("uin"))) {
                     pageService.readComment(Integer.valueOf(pid));
                 }

@@ -21,14 +21,14 @@ public interface PageService {
     /**
      * 遍历page评论
      */
-    List<Comment> listComment(Integer pid) throws Exception;
+    List<Comment> listNormalComment(Integer pid) throws Exception;
 
     /**
      * 遍历用户热门评论top3
      * @param
      * @return
      */
-    List<Comment> listHeatComment(Integer pid) throws Exception;
+    List<Comment> listFireComment(Integer pid) throws Exception;
 
     /**
      * 用户已读新评论
