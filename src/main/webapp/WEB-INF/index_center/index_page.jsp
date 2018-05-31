@@ -6,6 +6,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String hostname = request.getScheme()+"://"+request.getServerName();
 %>
 <html>
 <head>
@@ -13,17 +14,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引用本地资源 -->
     <link rel="stylesheet"
-          href="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+          href="<%= hostname %>:8080/Quarusis/res/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <link rel="stylesheet"
-          href="http://localhost:8080/Quarusis/res/quarusis/public.css">
+          href="<%= hostname %>:8080/Quarusis/res/quarusis/public.css">
     <script
-            src="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+            src="<%= hostname %>:8080/Quarusis/res/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
     <script
-            src="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+            src="<%= hostname %>:8080/Quarusis/res/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script
-            src="http://localhost:8080/Quarusis/res/quarusis/public.js"></script>
+            src="<%= hostname %>:8080/Quarusis/res/quarusis/public.js"></script>
     <script
-            src="http://localhost:8080/Quarusis/res/quarusis/index_center/index_page.js"></script>
+            src="<%= hostname %>:8080/Quarusis/res/quarusis/index_center/index_page.js"></script>
 </head>
 <body>
 
@@ -52,7 +53,7 @@
                     <div class="caret"></div>
                 </a>
                 </li>
-                <li><a href="http://localhost:8081/Quarusis_InChat"><span class="glyphicon glyphicon-bullhorn"></span> InChat</a></li>
+                <li><a href="<%= hostname %>:8081/Quarusis_InChat"><span class="glyphicon glyphicon-bullhorn"></span> InChat</a></li>
             </ul>
         </div>
         <ul class="nav navbar-nav navbar-right">

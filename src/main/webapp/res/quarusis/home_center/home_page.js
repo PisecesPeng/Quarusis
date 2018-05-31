@@ -1,3 +1,4 @@
+var hostname = window.location.protocol+"//"+window.location.hostname;
 /**
  * 隐藏显示略缩图框
  */
@@ -57,7 +58,8 @@ function checkPageForm(r) {
 var websocket = null;
 // 判断当前浏览器是否支持WebSocket
 if ('WebSocket' in window) {
-    websocket = new WebSocket("ws://localhost:8080/Quarusis/pagelist");
+    var socketStr = "ws://" + window.location.hostname + ":8080/Quarusis/pagelist";
+    websocket = new WebSocket(socketStr);
 } else {
     alert('当前浏览器 Not support websocket')
 }
@@ -78,7 +80,7 @@ websocket.onmessage = function (event) {
         if (page.whetherRead == 1) {
             str += '<span class="glyphicon glyphicon-asterisk" style="color: black" />'
         }
-        str += ' <a href="http://localhost:8080/Quarusis/page/' + page.id + '">&nbsp;&nbsp;<b>#' + page.topic + '#</b> ' + page.title + '</a>';
+        str += "<a href=\"" + hostname + ":8080/Quarusis/page/" + page.id + '">&nbsp;&nbsp;<b>#' + page.topic + '#</b> ' + page.title + '</a>';
         str += '</font></h3></div></div>';
     })
     $("#pageList").html(str);

@@ -4,6 +4,7 @@
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    String hostname = request.getScheme()+"://"+request.getServerName();
 %>
 <html>
 <head>
@@ -11,11 +12,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- 引用本地资源 -->
     <link rel="stylesheet"
-          href="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+          href="<%= hostname %>:8080/Quarusis/res/bootstrap-3.3.7-dist/css/bootstrap.min.css">
     <script
-            src="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
+            src="<%= hostname %>:8080/Quarusis/res/bootstrap-3.3.7-dist/js/jquery.min.js"></script>
     <script
-            src="http://localhost:8080/Quarusis/res/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+            src="<%= hostname %>:8080/Quarusis/res/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 
     <style>
         ::-webkit-scrollbar {
@@ -29,16 +30,18 @@
 
     <script type="text/javascript">
     $(function () {
+        var hostname = window.location.protocol+"//"+window.location.hostname;
         $("#login").click(function () {
-            $("#login").fadeOut(500);
-            setTimeout('$($("#login").html(\'<img src="http://localhost:8081/QR.png">\')).fadeIn(1000)',500)
+            $("#login").fadeOut(500);            
+            var timeStr = "$($(\"#login\").html('<img src=\"" + hostname + ":8081/QR.png\">')).fadeIn(1000)";
+            setTimeout(timeStr,500)
             $.ajax({
                 type : 'GET',
                 contentType : 'application/json;charset=utf-8',
                 url : "/Quarusis/loginQRcode",
                 success : function(data) {
                     if(data == 1) {
-                        self.location='http://localhost:8080/Quarusis/indexpage';
+                        self.location= '<%= hostname %>:8080/Quarusis/indexpage';
                     } else if(data == 0) {
                         $("#setName").html('<font color="#5B5B5B">检测到您是首次登录，请先设置您的Quarusis名称</font>');
                     } else {
