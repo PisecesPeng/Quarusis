@@ -4,7 +4,14 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './node_src/in_chat.js',
+        node_app: './node_src/in_chat.js',
+        node_pulic: './static/js/node_public.js',
+        quarusis_pulic: './src/main/webapp/res/quarusis/quarusis_public.js',
+        quarusis_homepage: './src/main/webapp/res/quarusis/home_center/home_page.js',
+        quarusis_usersetting: './src/main/webapp/res/quarusis/home_center/user_setting.js',
+        quarusis_indexpage: './src/main/webapp/res/quarusis/index_center/index_page.js',
+        quarusis_topicpage: './src/main/webapp/res/quarusis/index_center/topic_page.js',
+        quarusis_page: './src/main/webapp/res/quarusis/page_center/page.js',
     },
     devtool: 'inline-source-map',
     plugins: [
