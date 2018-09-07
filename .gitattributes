@@ -1,10 +1,9 @@
+*.js linguist-language=javascript
 *.css linguist-language=javascript
 *.html linguist-language=javascript
 *.json linguist-language=javascript
-*.svg linguist-language=javascript
-*.png linguist-language=javascript
-*.jpg linguist-language=javascript
 
+*.java linguist-language=java
 *.jsp linguist-language=java
 *.properties linguist-language=java
 *.xml linguist-language=java
