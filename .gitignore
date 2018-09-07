@@ -3,3 +3,4 @@ Quarusis.iml
 dist/
 node_modules/
 target/
+package-lock.json
