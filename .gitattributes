@@ -11,5 +11,5 @@
 *.sql linguist-language=sql
 *.sh linguist-language=shell
 
-src/main/webapp/res/bootstrap-3.3.7-dist/* linguist-vendored
-static/* linguist-vendored
+src/main/webapp/res/bootstrap-3.3.7-dist/* linguist-vendored=false
+static/* linguist-vendored=false
