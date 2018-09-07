@@ -5,7 +5,7 @@ const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
     entry: {
         node_app: './node_src/in_chat.js',
-        node_pulic: './static/js/node_public.js',
+        node_pulic: './node_res/js/node_public.js',
         quarusis_pulic: './src/main/webapp/res/quarusis/quarusis_public.js',
         quarusis_homepage: './src/main/webapp/res/quarusis/home_center/home_page.js',
         quarusis_usersetting: './src/main/webapp/res/quarusis/home_center/user_setting.js',

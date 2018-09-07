@@ -8,4 +8,4 @@ else
 fi
 # 输出$CURDIR的路径
 # echo $CURDIR
-python $CURDIR/common/py_wechat.py
+python $CURDIR/common_py/wechat.py

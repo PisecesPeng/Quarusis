@@ -16,7 +16,7 @@
     <link rel="stylesheet"
           href="<%= hostname %>:8081/static/css/bootstrap.min.css">
     <link rel="stylesheet"
-          href="<%= hostname %>:8081/static/css/quarusis_public.css">
+          href="<%= hostname %>:8081/common_res/css/quarusis_public.css">
     <script
             src="<%= hostname %>:8081/static/js/jquery.min.js"></script>
     <script
