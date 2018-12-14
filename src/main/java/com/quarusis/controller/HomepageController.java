@@ -1,5 +1,6 @@
 package com.quarusis.controller;
 
+import com.quarusis.annotation.SysLog;
 import com.quarusis.data.entity.Page;
 import com.quarusis.service.HomepageService;
 import org.apache.commons.io.FileUtils;
@@ -21,11 +22,6 @@ import java.util.Map;
 @RequestMapping("/")
 public class HomepageController {
 
-    /**
-     * Logger for this class
-     */
-    private static final Logger logger = Logger.getLogger(HomepageController.class);
-
     @Resource
     private Page page;
     @Resource(name="HomepageService")
@@ -36,9 +32,9 @@ public class HomepageController {
      * @param req
      * @return
      */
+    @SysLog("跳转homepage页面")
     @RequestMapping("/homepage")
     public String jumpHomepage(HttpServletRequest req) {
-        logger.info("jumpHomepage(HttpServletRequest) - start");
         //通过account查询用户动态列表
         try {
             req.setAttribute("pageList", homepageService.listPage((String) req.getSession().getAttribute("uin")));
@@ -46,7 +42,6 @@ public class HomepageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.info("jumpHomepage(HttpServletRequest) - end");
         return "/home_center/home_page";
     }
 
@@ -55,9 +50,9 @@ public class HomepageController {
      * @param req
      * @return
      */
+    @SysLog("用户上传page")
     @RequestMapping("/pageUpload.do")
     public String uploadPage(HttpServletRequest req,@RequestParam("pagePicture") MultipartFile picture) {
-        logger.info("uploadPage(HttpServletRequest,MultipartFile) - start");
         try {
             //设置编码
             req.setCharacterEncoding("UTF-8");
@@ -90,7 +85,6 @@ public class HomepageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.info("uploadPage(HttpServletRequest,MultipartFile) - end");
         return "redirect:/homepage";
     }
 
@@ -110,9 +104,9 @@ public class HomepageController {
      * @param
      * @return
      */
+    @SysLog("查询指定Topic的指定page")
     @RequestMapping("/searchHomepage")
     public @ResponseBody List<Page> searchHomePage(HttpServletRequest req,@RequestBody Map map) {
-        logger.info("searchHomePage(HttpServletRequest,Map) - start");
         List<Page> list = null;
         try {
             //从指定topicpage中选取符合条件的Page
@@ -120,7 +114,6 @@ public class HomepageController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        logger.info("searchHomePage(HttpServletRequest,Map) - end");
         return list;
     }
 

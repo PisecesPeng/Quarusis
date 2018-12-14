@@ -12,11 +12,6 @@ import java.util.List;
 @Service("IndexpageService")
 public class IndexpageServiceImpl implements IndexpageService{
 
-    /**
-     * Logger for this class
-     */
-    private static final Logger logger = Logger.getLogger(IndexpageServiceImpl.class);
-
     @Resource
     private IndexpageDao indexpageDao;
     @Resource
@@ -29,13 +24,9 @@ public class IndexpageServiceImpl implements IndexpageService{
      * @throws
      */
     public List<Page> listIndexPage() throws Exception {
-        logger.info("listIndexPage() - start");
-        logger.info("listIndexPage() - end");
         return indexpageDao.listIndexPage();
     }
     public List<Page> listTopicPage(String topic) throws Exception {
-        logger.info("listTopicPage(String) - start");
-        logger.info("listTopicPage(String) - end");
         return indexpageDao.listTopicPage(topic);
     }
 
@@ -46,13 +37,9 @@ public class IndexpageServiceImpl implements IndexpageService{
      * @throws
      */
     public List<Page> appendIndexpage(Integer beginpage) throws Exception {
-        logger.info("appendIndexpage(Integer) - start");
-        logger.info("appendIndexpage(Integer) - end");
         return indexpageDao.appendIndexpage(beginpage);
     }
     public List<Page> appendTopicpage(String topic,Integer beginpage) throws Exception {
-        logger.info("appendTopicpage(String,Integer) - start");
-        logger.info("appendTopicpage(String,Integer) - end");
         return indexpageDao.appendTopicpage(topic,beginpage);
     }
 
@@ -62,8 +49,6 @@ public class IndexpageServiceImpl implements IndexpageService{
      * @throws
      */
     public List<Page> listPageCommentSum() throws Exception {
-        logger.info("listPageCommentSum() - start");
-        logger.info("listPageCommentSum() - end");
         return indexpageDao.listPageCommentSum();
     }
 
@@ -74,13 +59,9 @@ public class IndexpageServiceImpl implements IndexpageService{
      * @throws
      */
     public List<Page> listSearchAllpage(String search) throws Exception {
-        logger.info("listSearchAllpage(String) - start");
-        logger.info("listSearchAllpage(String) - end");
         return indexpageDao.listSearchAllpage(search);
     }
     public List<Page> listSearchTopicpage(String topic,String search) throws Exception {
-        logger.info("listSearchTopicpage(String,String) - start");
-        logger.info("listSearchTopicpage(String,String) - end");
         return indexpageDao.listSearchTopicpage(topic, search);
     }
 

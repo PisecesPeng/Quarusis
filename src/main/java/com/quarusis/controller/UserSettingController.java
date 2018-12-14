@@ -1,5 +1,6 @@
 package com.quarusis.controller;
 
+import com.quarusis.annotation.SysLog;
 import com.quarusis.data.entity.User;
 import com.quarusis.service.UserSettingService;
 import org.apache.log4j.Logger;
@@ -15,11 +16,6 @@ import java.util.Map;
 @RequestMapping("/")
 public class UserSettingController {
 
-    /**
-     * Logger for this class
-     */
-    private static final Logger logger = Logger.getLogger(UserSettingController.class);
-
     @Resource
     private User user;
     @Resource(name="UserSettingService")
@@ -30,10 +26,9 @@ public class UserSettingController {
      * @param req
      * @return
      */
+    @SysLog("跳转UserSettingpage页面")
     @RequestMapping("/UserSetting")
     public String jumpUserSetting(HttpServletRequest req) {
-        logger.info("jumpUserSetting(HttpServletRequest) - start");
-        logger.info("jumpUserSetting(HttpServletRequest) - end");
         return "/home_center/user_setting";
     }
 
@@ -42,9 +37,9 @@ public class UserSettingController {
      * @param req
      * @return
      */
+    @SysLog("将用户更新信息持久化")
     @RequestMapping("/updateName.do")
     public void updateUserName(HttpServletRequest req,@RequestBody Map map) {
-        logger.info("updateUserName(HttpServletRequest,Map) - start");
         String name = (String) map.get("name");
         String uin = (String) req.getSession().getAttribute("uin");
         user.setUin(uin);
@@ -56,7 +51,6 @@ public class UserSettingController {
         }
         //设置session属性
         req.getSession().setAttribute("name",name);
-        logger.info("updateUserName(HttpServletRequest,Map) - end");
     }
 
 }
