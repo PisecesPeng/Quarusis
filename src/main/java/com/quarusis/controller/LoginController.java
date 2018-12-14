@@ -44,7 +44,7 @@ public class LoginController {
         logger.info("jumpLogin(HttpServletRequest) - start");
         try {
             //运行python脚本
-            proc = Runtime.getRuntime().exec("bash doPython.sh");
+            proc = Runtime.getRuntime().exec("bash wechat_QRcode.sh");
         } catch (IOException e) {
             e.printStackTrace();
         }
