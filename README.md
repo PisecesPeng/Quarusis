@@ -17,9 +17,11 @@
 <hr align="left" width="15%">
 
 > Quarusis的环境搭建、开发测试均在Linux Mint下完成.
+>>· 使用Docker搭建需要的服务(MySQL、MongoDB..);
+
 >>· 使用itchat(python微信库)，需微信扫码来实现登录(首次登录即注册);
 
->>· 使用maven进行Java项目管理;
+>>· 使用Maven进行Java项目管理;
 
 >>· 使用Spring，对项目进行配置，包括IoC与事务管理等;
 
@@ -31,7 +33,7 @@
 
 >>· 使用MySQL，负责记录'user数据、page数据'等;
 
->>· 使用npm进行Node.js的包管理;
+>>· 使用NPM进行Node.js的包管理;
 
 >>· 使用webpack，负责Node.js的'资源管理'等功能;
 
